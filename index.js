@@ -10,13 +10,14 @@ const startServer = options => {
 
   const compiler = webpack(webpackConfig)
   const devServerOptions = Object.assign({}, webpackConfig.devServer, {
+    publicPath: `/${options.distDir}/`,
     stats: {
       colors: true,
       children: false
     }
   })
 
-  options.debug && console.log('startServer options:\n', options)
+  options.debug && console.log('startServer options:\n', devServerOptions)
   const server = new WebpackDevServer(compiler, devServerOptions)
 
   server.listen(options.port, options.host, () => {

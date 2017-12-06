@@ -43,7 +43,7 @@ const makeConig = (options) => {
       filename: '[name].js'
     },
     context: path.resolve(__dirname),
-    devtool: options.build ? 'hidden-source-map' : 'cheap-module-source-map',
+    devtool: options.build ? 'hidden-source-map' : 'inline-source-map',
     module: {
       rules: [{
         test: /\.js$/i,
