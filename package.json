@@ -7,7 +7,7 @@
     "ada": "bin/ada.js"
   },
   "scripts": {
-    "test": "node bin/ada.js build --cwd doc"
+    "test": "node bin/ada.js build --cwd docs"
   },
   "repository": {
     "type": "git",
