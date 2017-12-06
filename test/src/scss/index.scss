@@ -1,0 +1,12 @@
+// @import "~sprites.scss";
+
+body {
+    background: #000;
+    background: url("../images/big.png");
+
+    .main {
+        display: flex;
+        color: #fff;
+        background: url("../images/logo.png");
+    }
+}
