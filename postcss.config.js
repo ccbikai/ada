@@ -14,8 +14,7 @@ module.exports = (ctx) => {
       cssnano: {
         safe: true,
         autoprefixer: {
-          add: true,
-          browsers: ['> 1%', 'android >=4', 'ios >=8', 'ie >=8']
+          add: true
         }
       }
     }
