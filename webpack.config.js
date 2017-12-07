@@ -41,7 +41,7 @@ const makeConig = (options) => {
     entry: getEntry(path.join(options.cwd, options.srcDir), options),
     output: {
       path: path.resolve(options.cwd, options.distDir),
-      filename: '[name].js',
+      filename: 'js/[name].js',
       sourceMapFilename: 'maps/[file].map'
     },
     context: path.resolve(__dirname),
@@ -63,7 +63,8 @@ const makeConig = (options) => {
             loader: 'file-loader',
             options: {
               name: '[name].[hash:6].[ext]',
-              outputPath: 'images/'
+              outputPath: 'images/',
+              useRelativePath: true
             }
           }
         ]
@@ -98,7 +99,7 @@ const makeConig = (options) => {
     plugins: [
       new ExtractTextPlugin({
         filename: (getPath) => {
-          return getPath('[name]').replace('.scss', '.css')
+          return getPath('css/[name]').replace('.scss', '.css')
         },
         allChunks: true
       })
