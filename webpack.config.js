@@ -1,5 +1,6 @@
 const glob = require('glob')
 const path = require('path')
+const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 // const SpritesmithPlugin = require('webpack-spritesmith');
@@ -36,11 +37,12 @@ const getEntry = (srcDir, options) => {
 const makeConig = (options) => {
   options.cwd = path.resolve(options.cwd)
 
-  return {
+  const config = {
     entry: getEntry(path.join(options.cwd, options.srcDir), options),
     output: {
       path: path.resolve(options.cwd, options.distDir),
-      filename: '[name].js'
+      filename: '[name].js',
+      sourceMapFilename: 'maps/[file].map'
     },
     context: path.resolve(__dirname),
     devtool: options.build ? 'hidden-source-map' : 'inline-source-map',
@@ -115,6 +117,25 @@ const makeConig = (options) => {
       // })
     ]
   }
+
+  if (options.build) {
+    config.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+        exclude: [/node_modules/],
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+        uglifyOptions: {
+          compress: {
+            warnings: false
+          },
+          comments: false
+        }
+      })
+    )
+  }
+
+  return config;
 }
 
 module.exports = makeConig

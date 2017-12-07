@@ -1,0 +1,10 @@
+{
+    "plugins": ["transform-runtime"],
+    "presets": [
+    	["env", {
+      		"targets": {
+        		"browsers": [">1%", "android >=4", "ios >=8", "ie >=8"]
+      		}
+    	}]
+  	]
+}

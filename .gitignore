@@ -62,5 +62,3 @@ typings/
 .env
 
 # End of https://www.gitignore.io/api/node,vscode
-
-/Users/ccbikai/code/node/ada/test/dist
