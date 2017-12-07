@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const path = require('path')
 const yargs = require('yargs')
 const ada = require('../index')
 
@@ -37,6 +36,6 @@ yargs.usage('$0 [cmd] [args]') // eslint-disable-line
   .alias('h', 'help')
   .alias('v', 'version')
   .epilog('copyright http://miantiao.me')
-  .command('build', '生成线上包' , () => {}, ada.build)
+  .command('build', '生成线上包', () => {}, ada.build)
   .command('$0', '打开开发服务器', () => {}, ada.startServer)
   .argv

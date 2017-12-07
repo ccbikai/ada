@@ -135,7 +135,7 @@ const makeConig = (options) => {
     )
   }
 
-  return config;
+  return config
 }
 
 module.exports = makeConig
