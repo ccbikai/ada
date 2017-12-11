@@ -62,7 +62,7 @@ const makeConig = (options) => {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[hash:6].[ext]',
+              name: options.build ? '[name].[hash:6].[ext]?imageslim' : '[name].[hash:6].[ext]',
               outputPath: 'images/',
               useRelativePath: true
             }

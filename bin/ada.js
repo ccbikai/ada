@@ -35,7 +35,7 @@ yargs.usage('$0 [cmd] [args]') // eslint-disable-line
   .help('h')
   .alias('h', 'help')
   .alias('v', 'version')
-  .epilog('copyright http://miantiao.me')
+  .epilog('Copyright http://ada.miantiao.me')
   .command('build', '生成线上包', () => {}, ada.build)
   .command('$0', '打开开发服务器', () => {}, ada.startServer)
   .argv

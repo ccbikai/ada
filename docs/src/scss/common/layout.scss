@@ -1,0 +1,30 @@
+// @import "~sprites.scss";
+
+html {
+    font-size: 40px;
+}
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+.main-wrap {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 0 30px;
+}

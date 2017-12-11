@@ -5,15 +5,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ada</title>
+    <script type="text/javascript">
+        (function(d,c){var e=d.documentElement,a="orientationchange" in window?"orientationchange":"resize",b=function(){var f=e.clientWidth;if(!f){return}if(f>=750){e.style.fontSize="40px"}else{e.style.fontSize=40*(f/750)+"px"}};if(!d.addEventListener){return}b();c.addEventListener(a,b,false);d.addEventListener("DOMContentLoaded",b,false)})(document,window); // eslint-disable-line
+    </script>
     <link rel="stylesheet" href="./dist/css/index.css">
 </head>
 <body>
-    <h1>Ada</h1>
-    <div id="desc">a simple frentend build tool</div>
-    <a class="link" target="_blank" href="https://github.com/ccbikai/ada">Github</a>
-    <a class="link" href="https://npmjs.com/ccbikai">npm</a>
-    <hr>
-    <a class="test" href="./test.html">Test</a>
+    <div class="wrap">
+        <header>
+            <div class="main-wrap">
+                <h1>Ada (阿打)</h1>
+                <div class="desc">基于 Webpack 和 Postcss 的前端打包工具</div>
+                <div class="link">
+                    <a href="https://travis-ci.org/ccbikai/ada"><img alt="Travis branch" src="https://img.shields.io/travis/ccbikai/ada/master.svg"/></a>
+                    <a href="https://www.npmjs.com/package/ada"><img alt="npm" src="https://img.shields.io/npm/v/ada.svg"/></a>
+                    <a href="https://github.com/ccbikai/ada"><img alt="GitHub stars" src="https://img.shields.io/github/stars/ccbikai/ada.svg?style=social&amp;label=Stars"/></a>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="main-wrap">
+                    <h2>起因</h2>
+
+                    <p>工作中经常遇到一些零散活动需求，分散在不同项目，部分项目是后端维护的。每个项目写打包配置文件，维护太麻烦，就将所有配置写在了一个命令行工具，脱离业务代码。</p>
+
+                    <h2>功能</h2>
+
+                    <ol>
+                        <li>JavaScript 支持 ES6+ 的语法，构建代码支持 Uglify；</li>
+                        <li>CSS 支持 SCSS 语法，使用 Postcss 做代码优化，支持 Cssnano, Autoprefixer;</li>
+                        <li>支持 SourceMap，方便调试。</li>
+                    </ol>
+
+                    <h2>使用帮助</h2>
+
+                    <ol>
+                        <li>运行
+                            <code>ada</code>，启动开发服务器，默认端口 8080；</li>
+                        <li>运行
+                            <code>ada build</code>，构建生产环境包，默认目录 dist；</li>
+                        <li>运行
+                            <code>ada help</code>，查看各参数功能。</li>
+                    </ol>
+
+                    <pre>
+ada [cmd] [args]
+命令：
+ada build  生成线上包
+ada        打开开发服务器                                             [默认值]
+
+选项：
+--debug            调试模式                             [布尔] [默认值: false]
+--host             服务器监听IP                 [字符串] [默认值: &quot;127.0.0.1&quot;]
+--port             服务器监听端口                        [数字] [默认值: 8080]
+--cwd              工作目录
+                        [字符串] [默认值: &quot;/Users/ccbikai/code/node/ada/docs&quot;]
+--src, --srcDir    源代码目录                         [字符串] [默认值: &quot;src&quot;]
+--dist, --distDir  编译后代码目录                    [字符串] [默认值: &quot;dist&quot;]
+-h, --help         显示帮助信息                                         [布尔]
+-v, --version      显示版本号                                           [布尔]
+                    </pre>
+
+                    <h2>示例代码</h2>
+
+                    <p>查看源代码 docs 目录，里边内容使用 ada 构建。</p>
+
+                    <h2>文件目录</h2>
+
+                    <blockquote><p>src 目录为原代码目录，可以自定义。</p></blockquote>
+                    <pre>
+.
+├── dist
+│   ├── css
+│   │   ├── index.css
+│   │   └── test.css
+│   ├── images
+│   │   ├── big.db1966.png
+│   │   └── logo.a771e8.png
+│   ├── js
+│   │   ├── index.js
+│   │   ├── index.scss.js
+│   │   ├── test.js
+│   │   └── test.scss.js
+│   └── maps
+│       ├── css
+│       │   ├── index.css.map
+│       │   └── test.css.map
+│       └── js
+│           ├── index.js.map
+│           ├── index.scss.js.map
+│           ├── test.js.map
+│           └── test.scss.js.map
+├── index.html
+├── src
+│   ├── icons
+│   │   ├── logo.png
+│   │   └── logo2.png
+│   ├── images
+│   │   ├── big.png
+│   │   └── logo.png
+│   ├── js
+│   │   ├── common
+│   │   │   └── index.js
+│   │   ├── index.js
+│   │   └── test.js
+│   └── scss
+│       ├── common
+│       │   └── layout.scss
+│       ├── index.scss
+│       └── test.scss
+└── test.html
+                    </pre>
+
+                    <h2>存在问题</h2>
+
+                    <ol>
+                        <li>多余的 .scss.js 文件未清理。</li>
+                    </ol>
+
+                    <h2>代办事项</h2>
+
+                    <ul>
+                        <li>支持 Vue 打包；</li>
+                        <li>支持自动生成雪碧图（已完成，目前存在重复构建问题）；</li>
+                        <li>支持 React 打包；</li>
+                        <li>热刷新。</li>
+                    </ul>
+
+                    <h2>功能测试</h2>
+
+                    <ul>
+                        <li><a class="test" href="./test.html">测试页面</a></li>
+                    </ul>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <div class="main-wrap">
+            <a href="http://ada.miantiao.me">Copyright http://ada.miantiao.me</a>
+        </div>
+    </footer>
     <script src="./dist/js/index.js"></script>
 </body>
 </html>
