@@ -1,7 +1,7 @@
 require('./common')
 
 document.addEventListener('DOMContentLoaded', () => {
-  const links = document.querySelectorAll('.link')
+  const links = Array.from(document.querySelectorAll('.link'))
   console.log(links.length)
 
   links.forEach(link => {
