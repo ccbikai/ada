@@ -1,10 +1,10 @@
-<!-- # Ada (阿打)
+# Ada (阿打)
 基于 Webpack 和 Postcss 的前端打包工具
 
  [![Travis branch](https://img.shields.io/travis/ccbikai/ada/master.svg)](https://travis-ci.org/ccbikai/ada)
 [![npm](https://img.shields.io/npm/v/ada.svg)](https://www.npmjs.com/package/ada)
 [![npm](https://img.shields.io/npm/dt/ada.svg)](https://www.npmjs.com/package/ada)
-[![GitHub stars](https://img.shields.io/github/stars/ccbikai/ada.svg?style=social&label=Stars)](https://github.com/ccbikai/ada) -->
+[![GitHub stars](https://img.shields.io/github/stars/ccbikai/ada.svg?style=social&label=Stars)](https://github.com/ccbikai/ada)
 
 
 ## 起因
@@ -17,7 +17,7 @@
 
 ## 使用帮助
 
-1. 运行 `ada`，启动开发服务器，默认端口 8080；
+1. 运行 `ada`，启动开发服务器，默认端口 8080；
 2. 运行 `ada build`，构建生产环境包，默认目录 dist；
 3. 运行 `ada help`，查看各参数功能。
 ```
@@ -41,7 +41,7 @@ ada [cmd] [args]
 
 ## 示例代码
 
-查看源代码 docs 目录，里边内容使用 ada 构建。
+查看源代码 docs 目录，里边内容使用 ada 构建。
 
 ## 文件目录
 
@@ -93,9 +93,9 @@ ada [cmd] [args]
 ## 存在问题
 1. 多余的 .scss.js 文件未清理。
 
-## 代办事项
+## 待办事项
 
 * 支持 Vue 打包；
-* 支持自动生成雪碧图（已完成，目前存在重复构建问题）；
+* 支持自动生成雪碧图（已完成，目前存在重复构建问题）；
 * 支持 React 打包；
 * 热刷新。
