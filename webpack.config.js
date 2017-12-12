@@ -3,7 +3,7 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-// const SpritesmithPlugin = require('webpack-spritesmith');
+const SpritesmithPlugin = require('webpack-spritesmith');
 
 const getEntry = (srcDir, options) => {
   options.debug && console.log('find js files in: ' + path.join(srcDir, 'js/*.js'))
@@ -102,20 +102,23 @@ const makeConig = (options) => {
           return getPath('css/[name]').replace('.scss', '.css')
         },
         allChunks: true
+      }),
+      new SpritesmithPlugin({
+          src: {
+              cwd: path.join(options.cwd, options.srcDir, 'icons'),
+              glob: '*.png'
+          },
+          target: {
+              image: path.resolve(options.cwd, options.srcDir, 'sprites/sprites.png'),
+              css: path.resolve(options.cwd, options.srcDir, 'sprites/sprites.scss')
+          },
+          apiOptions: {
+              cssImageRef: "../sprites/sprites.png"
+          },
+          spritesmithOptions: {
+            padding: 8
+          }
       })
-      // new SpritesmithPlugin({
-      //     src: {
-      //         cwd: path.join(options.cwd, options.srcDir, 'icons'),
-      //         glob: '*.png'
-      //     },
-      //     target: {
-      //         image: path.resolve(options.cwd, options.srcDir, 'sprites/sprites.png'),
-      //         css: path.resolve(options.cwd, options.srcDir, 'sprites/sprites.scss')
-      //     },
-      //     apiOptions: {
-      //         cssImageRef: "~sprites.png"
-      //     }
-      // })
     ]
   }
 
