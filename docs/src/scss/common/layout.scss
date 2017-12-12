@@ -1,7 +1,11 @@
-// @import "~sprites.scss";
+@import "../../sprites/sprites.scss";
+
+.icon {
+    background-size: 200%;
+}
 
 html {
-    font-size: 40px;
+    font-size: 40PX;
 }
 
 *,
