@@ -10,6 +10,7 @@ const startServer = options => {
 
   const compiler = webpack(webpackConfig)
   const devServerOptions = Object.assign({}, webpackConfig.devServer, {
+    quiet: true,
     publicPath: `/${options.distDir}/`,
     stats: {
       colors: true,
