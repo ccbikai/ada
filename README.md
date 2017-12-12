@@ -19,7 +19,8 @@
 
 1. 运行 `ada`，启动开发服务器，默认端口 8080；
 2. 运行 `ada build`，构建生产环境包，默认目录 dist；
-3. 运行 `ada help`，查看各参数功能。
+3. src/icons 目录里边的 png 图片会自动生成雪碧图，scss 代码中可以只许引入自动生成是 sprites/sprites.scss 文件，然后使用 `@include sprite($logo);` 既可以使用雪碧图，`docs/src/scss/test.scss` 可做参考；
+4. 运行 `ada -h`，查看各参数功能。
 ```
 ada [cmd] [args]
 
@@ -96,6 +97,5 @@ ada [cmd] [args]
 ## 待办事项
 
 * 支持 Vue 打包；
-* 支持自动生成雪碧图（已完成，目前存在重复构建问题）；
 * 支持 React 打包；
 * 热刷新。

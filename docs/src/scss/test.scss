@@ -17,7 +17,7 @@ body {
         height: 100px;
     }
 
-    .s-logo {
+    .icon-logo {
         @include sprite($logo);
     }
 }
