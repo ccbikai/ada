@@ -38,20 +38,21 @@ const build = options => {
   options.debug && console.log('build options:\n', options)
   compiler.run((err, stats) => {
     if (err) {
-      return console.error(err)
+      console.error(err)
+      process.exit(1)
     }
 
+    options.debug && console.log(stats.toJson('minimal'))
     const info = stats.toJson()
-
-    if (stats.hasErrors()) {
-      console.error(info.errors)
-    }
 
     if (stats.hasWarnings()) {
       console.warn(info.warnings)
     }
 
-    options.debug && console.log(stats.toJson('minimal'))
+    if (stats.hasErrors()) {
+      console.error(info.errors)
+      process.exit(1)
+    }
   })
 }
 
