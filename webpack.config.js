@@ -53,7 +53,9 @@ const makeConig = (options) => {
         use: {
           loader: 'babel-loader',
           options: {
-            cacheDirectory: true
+            cacheDirectory: true,
+            presets: [require('babel-preset-env')],
+            plugins: [require('babel-plugin-transform-runtime')]
           }
         }
       }, {
