@@ -3,6 +3,9 @@ $main-color: #3a4250;
 
 body {
     background: #fff;
+    height: 100%;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 .wrap {

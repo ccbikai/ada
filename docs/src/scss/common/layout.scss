@@ -4,24 +4,16 @@
     background-size: 200%;
 }
 
-html {
-    font-size: 40PX;
-}
-
-*,
-*:before,
-*:after {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html,
-body {
-    height: 100%;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+html {
+    font-size: 40PX;
+    font-family: "PingFang SC", miui, system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
 a {

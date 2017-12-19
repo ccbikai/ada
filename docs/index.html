@@ -35,6 +35,7 @@
                         <li>JavaScript 支持 ES6+ 的语法，构建代码支持 Uglify；</li>
                         <li>CSS 支持 SCSS 语法，使用 Postcss 做代码优化，支持 Cssnano, Autoprefixer;</li>
                         <li>支持自动生成雪碧图;</li>
+                        <li>支持自动转换 px 到 rem;</li>
                         <li>支持 SourceMap，方便调试。</li>
                     </ol>
 
@@ -53,20 +54,22 @@
 
                     <pre>
 ada [cmd] [args]
+
 命令：
-ada build  生成线上包
-ada        打开开发服务器                                             [默认值]
+    ada build  生成线上包
+    ada        打开开发服务器                                             [默认值]
 
 选项：
---debug            调试模式                             [布尔] [默认值: false]
---host             服务器监听IP                 [字符串] [默认值: &quot;127.0.0.1&quot;]
---port             服务器监听端口                        [数字] [默认值: 8080]
---cwd              工作目录
-                        [字符串] [默认值: &quot;/Users/ccbikai/code/node/ada/docs&quot;]
---src, --srcDir    源代码目录                         [字符串] [默认值: &quot;src&quot;]
---dist, --distDir  编译后代码目录                    [字符串] [默认值: &quot;dist&quot;]
--h, --help         显示帮助信息                                         [布尔]
--v, --version      显示版本号                                           [布尔]
+    --debug            调试模式                             [布尔] [默认值: false]
+    --host             服务器监听IP                 [字符串] [默认值: "127.0.0.1"]
+    --port             服务器监听端口                        [数字] [默认值: 8080]
+    --cwd              工作目录  [字符串] [默认值: "/Users/ccbikai/code/node/ada"]
+    --src, --srcDir    源代码目录                         [字符串] [默认值: "src"]
+    --dist, --distDir  编译后代码目录                    [字符串] [默认值: "dist"]
+    --noRem            不自动转换 rem                       [布尔] [默认值: false]
+    --noPx             自动转换 rem, 并且替换掉 px          [布尔] [默认值: false]
+    -h, --help         显示帮助信息                                         [布尔]
+    -v, --version      显示版本号                                           [布尔]
                     </pre>
 
                     <h2>示例代码</h2>

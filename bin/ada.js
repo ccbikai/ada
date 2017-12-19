@@ -29,6 +29,14 @@ yargs.options('debug', {
   default: 'dist',
   alias: 'distDir',
   describe: '编译后代码目录'
+}).options('noRem', {
+  type: 'boolean',
+  default: false,
+  describe: '不自动转换 rem'
+}).options('noPx', {
+  type: 'boolean',
+  default: false,
+  describe: '自动转换 rem, 并且替换掉 px'
 })
 
 yargs.usage('$0 [cmd] [args]') // eslint-disable-line
