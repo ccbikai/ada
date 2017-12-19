@@ -14,7 +14,8 @@
 1. JavaScript 支持 ES6+ 的语法，构建代码支持 Uglify；
 2. CSS 支持 SCSS 语法，使用 Postcss 做代码优化，支持 Cssnano, Autoprefixer;
 3. 支持自动生成雪碧图;
-4. 支持 SourceMap，方便调试。
+4. 支持自动转换 px 到 rem;
+5. 支持 SourceMap，方便调试。
 
 ## 安装
 
@@ -39,10 +40,11 @@ ada [cmd] [args]
   --debug            调试模式                             [布尔] [默认值: false]
   --host             服务器监听IP                 [字符串] [默认值: "127.0.0.1"]
   --port             服务器监听端口                        [数字] [默认值: 8080]
-  --cwd              工作目录
-                          [字符串] [默认值: "/Users/ccbikai/code/node/ada/docs"]
+  --cwd              工作目录  [字符串] [默认值: "/Users/ccbikai/code/node/ada"]
   --src, --srcDir    源代码目录                         [字符串] [默认值: "src"]
   --dist, --distDir  编译后代码目录                    [字符串] [默认值: "dist"]
+  --noRem            不自动转换 rem                       [布尔] [默认值: false]
+  --noPx             自动转换 rem, 并且替换掉 px          [布尔] [默认值: false]
   -h, --help         显示帮助信息                                         [布尔]
   -v, --version      显示版本号                                           [布尔]
 ```
