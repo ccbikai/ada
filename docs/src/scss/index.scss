@@ -34,6 +34,14 @@ header {
         font-size: 28px;
         color: #f0f0f0;
     }
+
+    img {
+        visibility: hidden;
+
+        &[src] {
+            visibility: visible;
+        }
+    }
 }
 
 main {
