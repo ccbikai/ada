@@ -48,7 +48,7 @@ const makeConig = (options) => {
     devtool: options.build ? 'hidden-source-map' : 'inline-source-map',
     resolve: {
       modules: [
-        path.join(process.cwd(), options.srcDir, 'hbs'),
+        path.join(options.cwd, options.srcDir, 'hbs'),
         'node_modules'
       ]
     },
@@ -82,8 +82,8 @@ const makeConig = (options) => {
           loader: 'handlebars-loader',
           options: {
             debug: options.debug,
-            helperDirs: [path.join(process.cwd(), options.srcDir, 'hbs/helpers')],
-            partialDirs: [path.join(process.cwd(), options.srcDir, 'hbs/partials')]
+            helperDirs: [path.join(options.cwd, options.srcDir, 'hbs/helpers')],
+            partialDirs: [path.join(options.cwd, options.srcDir, 'hbs/partials')]
           }
         }
       }, {
