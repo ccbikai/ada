@@ -46,6 +46,12 @@ const makeConig = (options) => {
     },
     context: path.resolve(__dirname),
     devtool: options.build ? 'hidden-source-map' : 'inline-source-map',
+    resolve: {
+      modules: [
+        path.join(options.cwd, options.srcDir, 'hbs'),
+        'node_modules'
+      ]
+    },
     module: {
       rules: [{
         test: /\.js$/i,
@@ -70,6 +76,16 @@ const makeConig = (options) => {
             }
           }
         ]
+      }, {
+        test: /\.(hbs|handlebars)$/i,
+        use: {
+          loader: 'handlebars-loader',
+          options: {
+            debug: options.debug,
+            helperDirs: [path.join(options.cwd, options.srcDir, 'hbs/helpers')],
+            partialDirs: [path.join(options.cwd, options.srcDir, 'hbs/partials')]
+          }
+        }
       }, {
         test: /\.scss$/i,
         use: ExtractTextPlugin.extract({

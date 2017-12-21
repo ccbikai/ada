@@ -1,6 +1,10 @@
 @import "common/layout.scss";
 $main-color: #3a4250;
 
+html {
+    height: 100%;
+}
+
 body {
     background: #fff;
     height: 100%;
@@ -33,6 +37,14 @@ header {
     .link {
         font-size: 28px;
         color: #f0f0f0;
+    }
+
+    img {
+        visibility: hidden;
+
+        &[src] {
+            visibility: visible;
+        }
     }
 }
 
