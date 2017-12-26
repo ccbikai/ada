@@ -2,7 +2,7 @@
 
 基于 Webpack 和 Postcss 的前端打包工具
 
- [![Travis branch](https://img.shields.io/travis/ccbikai/ada/master.svg)](https://travis-ci.org/ccbikai/ada)
+[![Travis branch](https://img.shields.io/travis/ccbikai/ada/master.svg)](https://travis-ci.org/ccbikai/ada)
 [![npm](https://img.shields.io/npm/v/ada.svg)](https://www.npmjs.com/package/ada)
 [![npm](https://img.shields.io/npm/dt/ada.svg)](https://www.npmjs.com/package/ada)
 [![GitHub stars](https://img.shields.io/github/stars/ccbikai/ada.svg?style=social&label=Stars)](https://github.com/ccbikai/ada)
