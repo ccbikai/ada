@@ -15,6 +15,7 @@
 
 1. JavaScript 支持 ES6+ 的语法，构建代码支持 Uglify；
 1. CSS 支持 SCSS 语法，使用 Postcss 做代码优化，支持 Cssnano, Autoprefixer;
+1. 支持实时刷新;
 1. 支持自动生成雪碧图;
 1. 支持自动转换 px 到 rem;
 1. 支持 SourceMap，方便调试。
@@ -111,5 +112,4 @@ ada [cmd] [args]
 ## 待办事项
 
 * 支持 Vue 打包；
-* 支持 React 打包；
-* 热刷新。
+* 支持 React 打包。

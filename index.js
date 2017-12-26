@@ -8,8 +8,15 @@ const startServer = options => {
 
   options.debug && console.log('webpackConfig:\n', Object.assign({}, webpackConfig))
 
+  if (!options.build) {
+    Object.keys(webpackConfig.entry).forEach(name => {
+      webpackConfig.entry[name] = [`webpack-dev-server/client?http://${options.host}:${options.port}`, webpackConfig.entry[name]]
+    })
+  }
+
   const compiler = webpack(webpackConfig)
   const devServerOptions = Object.assign({}, webpackConfig.devServer, {
+    inline: true,
     quiet: true,
     publicPath: `/${options.distDir}/`,
     stats: {
