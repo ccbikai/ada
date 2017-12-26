@@ -1,7 +1,7 @@
 @import "../../sprites/sprites.scss";
 
 .icon {
-    background-size: 200%;
+    background-size: $spritesheet-width $spritesheet-height;
 }
 
 * {
