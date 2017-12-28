@@ -1,6 +1,7 @@
 const glob = require('glob')
 const path = require('path')
 const webpack = require('webpack')
+const webpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const SpritesmithPlugin = require('webpack-spritesmith')
@@ -37,7 +38,7 @@ const getEntry = (srcDir, options) => {
 const makeConig = (options) => {
   options.cwd = path.resolve(options.cwd)
 
-  const config = {
+  let config = {
     entry: getEntry(path.join(options.cwd, options.srcDir), options),
     output: {
       path: path.resolve(options.cwd, options.distDir),
@@ -159,6 +160,12 @@ const makeConig = (options) => {
     config.plugins.push(
       new FriendlyErrorsWebpackPlugin()
     )
+  }
+
+  if (options.config) {
+    const customConfig = require(options.config)
+
+    config = webpackMerge(config, customConfig)
   }
 
   return config
