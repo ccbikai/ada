@@ -165,6 +165,7 @@ const makeConig = (options) => {
   if (options.config) {
     const customConfig = require(options.config)
 
+    options.debug && console.log('customConfig:\n', customConfig)
     config = webpackMerge(config, customConfig)
   }
 
