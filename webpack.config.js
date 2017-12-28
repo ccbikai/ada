@@ -39,7 +39,7 @@ const makeConig = (options) => {
   options.cwd = path.resolve(options.cwd)
 
   let config = {
-    entry: getEntry(path.join(options.cwd, options.srcDir), options),
+    entry: getEntry(path.resolve(options.cwd, options.srcDir), options),
     output: {
       path: path.resolve(options.cwd, options.distDir),
       filename: 'js/[name].js',
@@ -128,8 +128,8 @@ const makeConig = (options) => {
           glob: '*.png'
         },
         target: {
-          image: path.resolve(options.cwd, options.srcDir, 'sprites/sprites.png'),
-          css: path.resolve(options.cwd, options.srcDir, 'sprites/sprites.scss')
+          image: path.join(options.cwd, options.srcDir, 'sprites/sprites.png'),
+          css: path.join(options.cwd, options.srcDir, 'sprites/sprites.scss')
         },
         apiOptions: {
           cssImageRef: '../sprites/sprites.png'
@@ -163,7 +163,11 @@ const makeConig = (options) => {
   }
 
   if (options.config) {
-    const customConfig = require(options.config)
+    const configPath = path.resolve(options.cwd, options.config)
+
+    options.debug && console.log('configPath: ', configPath)
+
+    const customConfig = require(configPath)
 
     options.debug && console.log('customConfig:\n', customConfig)
     config = webpackMerge(config, customConfig)
