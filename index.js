@@ -22,7 +22,8 @@ const startServer = options => {
     stats: {
       colors: true,
       children: false
-    }
+    },
+    disableHostCheck: true
   })
 
   options.debug && console.log('startServer options:\n', devServerOptions)
