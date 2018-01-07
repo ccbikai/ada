@@ -6,6 +6,7 @@
 [![npm](https://img.shields.io/npm/v/ada.svg)](https://www.npmjs.com/package/ada)
 [![npm](https://img.shields.io/npm/dt/ada.svg)](https://www.npmjs.com/package/ada)
 [![GitHub stars](https://img.shields.io/github/stars/ccbikai/ada.svg?style=social&label=Stars)](https://github.com/ccbikai/ada)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fccbikai%2Fada.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fccbikai%2Fada?ref=badge_shield)
 
 ## 起因
 
@@ -113,3 +114,7 @@ ada [cmd] [args]
 
 * 支持 Vue 打包；
 * 支持 React 打包。
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fccbikai%2Fada.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fccbikai%2Fada?ref=badge_large)
