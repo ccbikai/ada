@@ -37,6 +37,11 @@ yargs.options('debug', {
   type: 'boolean',
   default: false,
   describe: '自动转换 rem, 并且替换掉 px'
+}).options('config', {
+  type: 'string',
+  default: '',
+  alias: 'c',
+  describe: '自定义 webpack 配置'
 })
 
 yargs.usage('$0 [cmd] [args]') // eslint-disable-line

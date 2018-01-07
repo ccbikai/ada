@@ -3,3 +3,5 @@ node_js:
   - "node"
   - "8"
   - "6"
+before_script:
+  - npm i -g eslint eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node

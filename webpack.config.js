@@ -1,17 +1,18 @@
 const glob = require('glob')
 const path = require('path')
 const webpack = require('webpack')
+const webpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const SpritesmithPlugin = require('webpack-spritesmith')
 
 const getEntry = (srcDir, options) => {
-  options.debug && console.log('find js files in: ' + path.join(srcDir, 'js/*.js'))
-  options.debug && console.log('find scss files in: ' + path.join(srcDir, 'scss/*.scss'))
+  options.debug && console.log('find js files in: ' + path.resolve(srcDir, 'js/*.js'))
+  options.debug && console.log('find scss files in: ' + path.resolve(srcDir, 'scss/*.scss'))
 
   const entry = {}
-  const jsFiles = glob.sync(path.join(srcDir, 'js/*.js'))
-  const scssFiles = glob.sync(path.join(srcDir, 'scss/*.scss'))
+  const jsFiles = glob.sync(path.resolve(srcDir, 'js/*.js'))
+  const scssFiles = glob.sync(path.resolve(srcDir, 'scss/*.scss'))
 
   if (jsFiles.length) {
     jsFiles.forEach(file => {
@@ -37,8 +38,8 @@ const getEntry = (srcDir, options) => {
 const makeConig = (options) => {
   options.cwd = path.resolve(options.cwd)
 
-  const config = {
-    entry: getEntry(path.join(options.cwd, options.srcDir), options),
+  let config = {
+    entry: getEntry(path.resolve(options.cwd, options.srcDir), options),
     output: {
       path: path.resolve(options.cwd, options.distDir),
       filename: 'js/[name].js',
@@ -48,7 +49,7 @@ const makeConig = (options) => {
     devtool: options.build ? 'hidden-source-map' : 'inline-source-map',
     resolve: {
       modules: [
-        path.join(options.cwd, options.srcDir, 'hbs'),
+        path.resolve(options.cwd, options.srcDir, 'hbs'),
         'node_modules'
       ]
     },
@@ -82,8 +83,8 @@ const makeConig = (options) => {
           loader: 'handlebars-loader',
           options: {
             debug: options.debug,
-            helperDirs: [path.join(options.cwd, options.srcDir, 'hbs/helpers')],
-            partialDirs: [path.join(options.cwd, options.srcDir, 'hbs/partials')]
+            helperDirs: [path.resolve(options.cwd, options.srcDir, 'hbs/helpers')],
+            partialDirs: [path.resolve(options.cwd, options.srcDir, 'hbs/partials')]
           }
         }
       }, {
@@ -101,7 +102,7 @@ const makeConig = (options) => {
             options: {
               sourceMap: true,
               config: {
-                path: path.join(__dirname, 'postcss.config.js'),
+                path: path.resolve(__dirname, 'postcss.config.js'),
                 ctx: options
               }
             }
@@ -123,7 +124,7 @@ const makeConig = (options) => {
       }),
       new SpritesmithPlugin({
         src: {
-          cwd: path.join(options.cwd, options.srcDir, 'icons'),
+          cwd: path.resolve(options.cwd, options.srcDir, 'icons'),
           glob: '*.png'
         },
         target: {
@@ -159,6 +160,17 @@ const makeConig = (options) => {
     config.plugins.push(
       new FriendlyErrorsWebpackPlugin()
     )
+  }
+
+  if (options.config) {
+    const configPath = path.resolve(options.cwd, options.config)
+
+    options.debug && console.log('configPath: ', configPath)
+
+    const customConfig = require(configPath)
+
+    options.debug && console.log('customConfig:\n', customConfig)
+    config = webpackMerge(config, customConfig)
   }
 
   return config
