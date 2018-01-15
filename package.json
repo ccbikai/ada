@@ -8,8 +8,9 @@
   },
   "scripts": {
     "lint": "eslint . --fix",
-    "test": "npm run lint && node bin/ada.js build --cwd docs",
-    "build": "node bin/ada.js build --cwd docs --noPx"
+    "build": "node bin/ada.js build --cwd docs --noPx",
+    "dev": "node bin/ada.js --cwd docs --noPx",
+    "test": "npm run lint && npm run build"
   },
   "repository": {
     "type": "git",
