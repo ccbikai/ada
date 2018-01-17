@@ -5,6 +5,7 @@ const webpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const SpritesmithPlugin = require('webpack-spritesmith')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const getEntry = (srcDir, options) => {
   options.debug && console.log('find js files in: ' + path.resolve(srcDir, 'js/*.js'))
@@ -143,6 +144,11 @@ const makeConig = (options) => {
 
   if (options.build) {
     config.plugins.push(
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: '"production"'
+        }
+      }),
       new webpack.optimize.UglifyJsPlugin({
         exclude: [/node_modules/],
         cache: true,
@@ -159,6 +165,15 @@ const makeConig = (options) => {
   } else {
     config.plugins.push(
       new FriendlyErrorsWebpackPlugin()
+    )
+  }
+
+  if (options.analyze) {
+    config.plugins.push(
+      new BundleAnalyzerPlugin({
+        analyzerMode: options.build ? 'server' : 'static',
+        openAnalyzer: Boolean(options.build)
+      })
     )
   }
 
