@@ -37,6 +37,10 @@ yargs.options('debug', {
   type: 'boolean',
   default: false,
   describe: '自动转换 rem, 并且替换掉 px'
+}).options('analyze', {
+  type: 'boolean',
+  default: false,
+  describe: '开启性能分析模式'
 }).options('config', {
   type: 'string',
   default: '',
