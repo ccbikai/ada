@@ -74,7 +74,8 @@ const makeConig = (options) => {
             options: {
               name: options.build ? '[name].[hash:6].[ext]?imageslim' : '[name].[hash:6].[ext]',
               outputPath: 'images/',
-              useRelativePath: true
+              publicPath: '../images/',
+              useRelativePath: false
             }
           }
         ]
