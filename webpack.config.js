@@ -154,18 +154,6 @@ const makeConig = (options) => {
         'process.env': {
           NODE_ENV: '"production"'
         }
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        exclude: [/node_modules/],
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-        uglifyOptions: {
-          compress: {
-            warnings: false
-          },
-          comments: false
-        }
       })
     )
   } else {
