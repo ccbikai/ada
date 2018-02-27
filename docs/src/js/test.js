@@ -2,7 +2,7 @@ const tmpl = require('main.hbs')
 
 require('./common')
 
-console.log('test')
+console.log('test2222')
 
 const xxxxx = 11111111111111111
 

@@ -40,6 +40,11 @@ const makeConig = (options) => {
   options.cwd = path.resolve(options.cwd)
 
   let config = {
+    mode: options.build ? 'development' : 'production',
+    performance: {
+      maxEntrypointSize: options.build ? 250000 : 1000000,
+      maxAssetSize: options.build ? 250000 : 1000000
+    },
     entry: getEntry(path.resolve(options.cwd, options.srcDir), options),
     output: {
       path: path.resolve(options.cwd, options.distDir),
