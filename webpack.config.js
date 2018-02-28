@@ -95,14 +95,20 @@ const makeConig = (options) => {
           }
         }
       }, {
-        test: /\.scss$/i,
+        test: /\.(scss|css)$/i,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [{
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
-              sourceMap: true
+              importLoaders: 2,
+              sourceMap: true,
+              minimize: {
+                safe: true,
+                autoprefixer: {
+                  add: true
+                }
+              }
             }
           }, {
             loader: 'postcss-loader',

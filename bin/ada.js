@@ -46,6 +46,11 @@ yargs.options('debug', {
   default: '',
   alias: 'c',
   describe: '自定义 webpack 配置'
+}).options('postcss', {
+  type: 'string',
+  default: '',
+  alias: 'p',
+  describe: '自定义 postcss 配置'
 })
 
 yargs.usage('$0 [cmd] [args]') // eslint-disable-line

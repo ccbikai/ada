@@ -1,10 +1,14 @@
+const path = require('path')
+
 module.exports = (ctx) => {
   // const { file, options, env } = ctx
   const {options} = ctx
-  const plugins = {}
+  const config = {
+    plugins: {}
+  }
 
   if (!options.noRem) {
-    plugins['postcss-pxtorem'] = {
+    config.plugins['postcss-pxtorem'] = {
       rootValue: 40,
       replace: options.noPx, // 替换 PX
       unitPrecision: 5, // 保留5位小数字
@@ -14,16 +18,17 @@ module.exports = (ctx) => {
     }
   }
 
-  Object.assign(plugins, {
-    cssnano: {
-      safe: true,
-      autoprefixer: {
-        add: true
-      }
-    }
-  })
+  if (options.postcss) {
+    const configPath = path.resolve(options.cwd, options.postcss)
 
-  return {
-    plugins
+    options.debug && console.log('postcssConfigPath: ', configPath)
+
+    const customConfig = require(configPath)
+
+    options.debug && console.log('postcssCustomConfig:\n', customConfig)
+
+    Object.assign(config, customConfig)
   }
+
+  return config
 }
