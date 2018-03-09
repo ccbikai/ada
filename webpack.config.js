@@ -106,7 +106,8 @@ const makeConig = (options) => {
               minimize: {
                 safe: true,
                 autoprefixer: {
-                  add: true
+                  add: true,
+                  remove: false
                 }
               }
             }
