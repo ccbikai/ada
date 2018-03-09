@@ -1,6 +1,6 @@
 {
   "name": "ada",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "a simple frentend build tool",
   "main": "index.js",
   "bin": {
