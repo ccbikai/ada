@@ -18,7 +18,8 @@ module.exports = (ctx) => {
     cssnano: {
       safe: true,
       autoprefixer: {
-        add: true
+        add: true,
+        remove: false
       }
     }
   })
