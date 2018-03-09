@@ -42,8 +42,8 @@ const makeConig = (options) => {
   let config = {
     mode: options.build ? 'development' : 'production',
     performance: {
-      maxEntrypointSize: options.build ? 250000 : 1000000,
-      maxAssetSize: options.build ? 250000 : 1000000
+      maxEntrypointSize: options.build ? 250000 : 2000000,
+      maxAssetSize: options.build ? 250000 : 2000000
     },
     entry: getEntry(path.resolve(options.cwd, options.srcDir), options),
     output: {
@@ -56,20 +56,23 @@ const makeConig = (options) => {
     context: path.resolve(__dirname),
     devtool: options.build ? 'hidden-source-map' : 'inline-source-map',
     resolve: {
+      extensions: ['.js', '.json', '.jsx'],
       modules: [
         path.resolve(options.cwd, options.srcDir, 'hbs'),
+        path.resolve(options.cwd, options.srcDir, 'js'),
+        path.resolve(options.cwd, options.srcDir, 'components'),
         'node_modules'
       ]
     },
     module: {
       rules: [{
-        test: /\.js$/i,
+        test: /\.(js|jsx)$/i,
         exclude: [/node_modules/],
         use: {
           loader: 'babel-loader',
           options: {
             cacheDirectory: true,
-            presets: [require('babel-preset-env')],
+            presets: [require('babel-preset-env'), require('babel-preset-react')],
             plugins: [require('babel-plugin-transform-runtime'), require('babel-plugin-syntax-dynamic-import')]
           }
         }
@@ -161,7 +164,7 @@ const makeConig = (options) => {
     config.plugins.push(
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: '"production"'
+          NODE_ENV: JSON.stringify('production')
         }
       })
     )
