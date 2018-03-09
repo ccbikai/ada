@@ -29,6 +29,11 @@ yargs.options('debug', {
   default: 'dist',
   alias: 'distDir',
   describe: '编译后代码目录'
+}).options('public', {
+  type: 'string',
+  default: '',
+  alias: 'publicPath',
+  describe: '静态资源CDN目录'
 }).options('noRem', {
   type: 'boolean',
   default: false,

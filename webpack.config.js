@@ -48,7 +48,9 @@ const makeConig = (options) => {
     entry: getEntry(path.resolve(options.cwd, options.srcDir), options),
     output: {
       path: path.resolve(options.cwd, options.distDir),
+      publicPath: options.publicPath || `/${options.distDir}/`,
       filename: 'js/[name].js',
+      chunkFilename: 'js/[chunkhash].bundle.js',
       sourceMapFilename: 'maps/[file].map'
     },
     context: path.resolve(__dirname),
@@ -68,7 +70,7 @@ const makeConig = (options) => {
           options: {
             cacheDirectory: true,
             presets: [require('babel-preset-env')],
-            plugins: [require('babel-plugin-transform-runtime')]
+            plugins: [require('babel-plugin-transform-runtime'), require('babel-plugin-syntax-dynamic-import')]
           }
         }
       }, {
