@@ -15,3 +15,7 @@ const htmlStr = tmpl({
 })
 
 document.getElementById('hbs-test').innerHTML = htmlStr
+
+import('./common/lazy.js').then(({LAZY}) => {
+    console.log(LAZY)
+})
