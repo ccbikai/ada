@@ -1,6 +1,6 @@
 {
   "name": "ada",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "a simple frentend build tool",
   "main": "index.js",
   "bin": {
@@ -34,7 +34,7 @@
     "file-loader": "^1.1.11",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "glob": "^7.1.2",
-    "handlebars-loader": "github:Waavi/handlebars-loader",
+    "handlebars-loader": "github:unic/handlebars-loader",
     "node-sass": "^4.7.2",
     "postcss-loader": "^2.1.1",
     "postcss-pxtorem": "^4.0.1",
