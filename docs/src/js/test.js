@@ -9,11 +9,11 @@ import * as Actions from './actions'
 import './common'
 
 // react test
-
 // ReactApp.propTypes = {
 //   name: PropTypes.string.isRequired,
 //   actions: PropTypes.object.isRequired
 // }
+const store = createStore(reducer)
 
 const mapStateToProps = state => ({
   name: state.name
@@ -28,10 +28,6 @@ const App = connect(
   mapDispatchToProps
 )(ReactApp)
 
-const store = createStore(reducer)
-
-console.log(store.getState())
-
 ReactDOM.render(
   <Provider store={store}>
     <App />
@@ -40,15 +36,15 @@ ReactDOM.render(
 )
 
 // hbs test
-const tmpl = require('main.hbs')
+// const tmpl = require('main.hbs')
 
-const htmlStr = tmpl({
-  name: '张三',
-  age: 22,
-  sexNum: 1
-})
+// const htmlStr = tmpl({
+//   name: '张三',
+//   age: 22,
+//   sexNum: 1
+// })
 
-document.getElementById('hbs-test').innerHTML = htmlStr
+// document.getElementById('hbs-test').innerHTML = htmlStr
 
 // lazy test
 import('common/lazy.js').then(({LAZY}) => {

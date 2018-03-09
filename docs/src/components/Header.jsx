@@ -12,8 +12,8 @@ export default class Header extends Component {
     }
 
     render() {
-        return <div>
+        return (
             <h2 onClick={this.handleClick}>Hello, {this.props.name}!</h2>
-        </div>
+        )
     }
 }
