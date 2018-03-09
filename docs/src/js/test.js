@@ -1,12 +1,46 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore, bindActionCreators } from 'redux'
+import { Provider, connect } from 'react-redux'
+import ReactApp from './app.jsx'
+import reducer from './reducers'
+import * as Actions from './actions'
+
+import './common'
+
+// react test
+
+// ReactApp.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   actions: PropTypes.object.isRequired
+// }
+
+const mapStateToProps = state => ({
+  name: state.name
+})
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(Actions, dispatch)
+})
+
+const App = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ReactApp)
+
+const store = createStore(reducer)
+
+console.log(store.getState())
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('react')
+)
+
+// hbs test
 const tmpl = require('main.hbs')
-
-require('./common')
-
-console.log('test2222')
-
-const xxxxx = 11111111111111111
-
-console.log(xxxxx)
 
 const htmlStr = tmpl({
   name: '张三',
@@ -16,6 +50,7 @@ const htmlStr = tmpl({
 
 document.getElementById('hbs-test').innerHTML = htmlStr
 
-import('./common/lazy.js').then(({LAZY}) => {
+// lazy test
+import('common/lazy.js').then(({LAZY}) => {
     console.log(LAZY)
 })
