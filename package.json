@@ -7,7 +7,7 @@
     "ada": "bin/ada.js"
   },
   "scripts": {
-    "lint": "eslint . --fix",
+    "lint": "eslint --fix --ext .js,.jsx .",
     "build": "node bin/ada.js build --cwd docs --noPx",
     "dev": "node bin/ada.js --cwd docs --noPx",
     "test": "npm run lint && npm run build"
@@ -53,6 +53,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^3.7.2"
   }
 }
