@@ -1,6 +1,5 @@
 const glob = require('glob')
 const path = require('path')
-const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
@@ -161,13 +160,7 @@ const makeConig = (options) => {
   }
 
   if (options.build) {
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify('production')
-        }
-      })
-    )
+    // 构建时需要追加的插件
   } else {
     config.plugins.push(
       new FriendlyErrorsWebpackPlugin()
