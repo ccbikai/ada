@@ -40,7 +40,7 @@ const makeConig = (options) => {
   options.cwd = path.resolve(options.cwd)
 
   let config = {
-    mode: options.build ? 'development' : 'production',
+    mode: options.build ? 'production' : 'development',
     performance: {
       maxEntrypointSize: options.build ? 250000 : 2000000,
       maxAssetSize: options.build ? 250000 : 2000000

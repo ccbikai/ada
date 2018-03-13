@@ -19,7 +19,7 @@ import * as Actions from './actions'
 // React test
 const history = createHistory()
 const middleware = routerMiddleware(history)
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers = process.env.NODE_ENV === 'production' ? compose : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(combineReducers(Object.assign(
   reducer,
   { router: routerReducer }
