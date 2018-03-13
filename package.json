@@ -41,10 +41,10 @@
     "postcss-loader": "^2.1.1",
     "postcss-pxtorem": "^4.0.1",
     "sass-loader": "^6.0.7",
-    "style-loader": "^0.20.2",
+    "style-loader": "^0.20.3",
     "webpack": "^4.1.1",
     "webpack-bundle-analyzer": "^2.11.1",
-    "webpack-dev-server": "^3.1.0",
+    "webpack-dev-server": "^3.1.1",
     "webpack-merge": "^4.1.2",
     "webpack-spritesmith": "^0.4.0",
     "yargs": "^11.0.0"
