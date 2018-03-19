@@ -1,5 +1,7 @@
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
+const path = require('path')
+const rimraf = require('rimraf')
 
 const getWebpackConfig = require('./webpack.config')
 
@@ -57,6 +59,8 @@ const build = options => {
       console.error(info.errors)
       process.exit(1)
     }
+
+    rimraf.sync(`${path.resolve(options.cwd, options.distDir)}/**/*.scss.js`)
   })
 }
 
