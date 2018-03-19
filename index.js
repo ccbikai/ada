@@ -19,10 +19,6 @@ const startServer = options => {
     inline: true,
     quiet: true,
     publicPath: `/${options.distDir}/`,
-    stats: {
-      colors: true,
-      children: false
-    },
     disableHostCheck: true
   })
 
