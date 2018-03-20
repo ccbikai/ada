@@ -2,5 +2,8 @@
     "parserOptions": {
         "parser": "babel-eslint"
     },
-    "extends": ["standard", "standard-react", "plugin:vue/strongly-recommended"]
+    "extends": ["standard", "standard-react", "plugin:vue/strongly-recommended"],
+    "plugins": [
+        "vue"
+    ]
 }
