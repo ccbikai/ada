@@ -60,6 +60,7 @@ const makeConig = (options) => {
         path.resolve(options.cwd, options.srcDir, 'hbs'),
         path.resolve(options.cwd, options.srcDir, 'js'),
         path.resolve(options.cwd, options.srcDir, 'components'),
+        path.resolve(options.cwd, options.srcDir, 'scss'),
         'node_modules'
       ]
     },
@@ -136,7 +137,13 @@ const makeConig = (options) => {
     plugins: [
       new ExtractTextPlugin({
         filename: (getPath) => {
-          return getPath('css/[name]').replace('.scss', '.css')
+          const rewPath = getPath('css/[name]')
+
+          if (rewPath.endsWith('.scss')) {
+            return rewPath.replace('.scss', '.css')
+          }
+
+          return rewPath + '.css'
         },
         allChunks: true
       }),

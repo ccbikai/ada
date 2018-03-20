@@ -1,10 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Link } from 'react-router-dom'
+import Loadable from 'react-loadable'
 
-import Header from '../components/Header'
-import Home from '../components/Home'
-import About from '../components/About'
+import Header from 'Header'
+import Home from 'Home'
+import Loading from 'Loading'
+
+const About = Loadable({
+  loader: () => import('About'),
+  loading: Loading
+})
 
 function App ({name, actions}) {
   return <div className='app'>
