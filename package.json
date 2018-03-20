@@ -7,7 +7,7 @@
     "ada": "bin/ada.js"
   },
   "scripts": {
-    "lint": "eslint --fix --ext .js,.jsx .",
+    "lint": "eslint --fix --ext .js,.jsx,.vue .",
     "build": "node bin/ada.js build --cwd docs --noPx",
     "dev": "node bin/ada.js --cwd docs --noPx",
     "test": "npm run lint && npm run build"
