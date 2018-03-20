@@ -6,6 +6,8 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const SpritesmithPlugin = require('webpack-spritesmith')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
+const getLoader = require('./loaders')
+
 const getEntry = (srcDir, options) => {
   options.debug && console.log('find js files in: ' + path.resolve(srcDir, 'js/*.js'))
   options.debug && console.log('find scss files in: ' + path.resolve(srcDir, 'scss/*.scss'))
@@ -62,33 +64,27 @@ const makeConig = (options) => {
         path.resolve(options.cwd, options.srcDir, 'components'),
         path.resolve(options.cwd, options.srcDir, 'scss'),
         'node_modules'
-      ]
+      ],
+      alias: {
+        vue: 'vue/dist/vue.common.js'
+      }
     },
     module: {
       rules: [{
         test: /\.(js|jsx)$/i,
         exclude: [/node_modules/],
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-            presets: [require('babel-preset-env'), require('babel-preset-react')],
-            plugins: [require('babel-plugin-transform-runtime'), require('babel-plugin-syntax-dynamic-import')]
-          }
-        }
+        use: getLoader('js', options)
       }, {
         test: /\.(png|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: options.build ? '[name].[hash:6].[ext]?imageslim' : '[name].[hash:6].[ext]',
-              outputPath: 'images/',
-              publicPath: '../images/',
-              useRelativePath: false
-            }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: options.build ? '[name].[hash:6].[ext]?imageslim' : '[name].[hash:6].[ext]',
+            outputPath: 'images/',
+            publicPath: '../images/',
+            useRelativePath: false
           }
-        ]
+        }]
       }, {
         test: /\.(hbs|handlebars)$/i,
         use: {
@@ -101,37 +97,20 @@ const makeConig = (options) => {
         }
       }, {
         test: /\.(scss|css)$/i,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-              sourceMap: true,
-              minimize: {
-                safe: true,
-                autoprefixer: {
-                  add: true,
-                  remove: false
-                }
-              }
+        use: getLoader('scss', options)
+      }, {
+        test: /\.vue$/,
+        use: {
+          loader: 'vue-loader',
+          options: {
+            hotReload: false,
+            loaders: {
+              js: getLoader('js'),
+              css: getLoader('scss', Object.assign({styleFallbackLoader: 'vue-style-loader'}, options)),
+              scss: getLoader('scss', Object.assign({styleFallbackLoader: 'vue-style-loader'}, options))
             }
-          }, {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-              config: {
-                path: path.resolve(__dirname, 'postcss.config.js'),
-                ctx: options
-              }
-            }
-          }, {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
-          }]
-        })
+          }
+        }
       }]
     },
     plugins: [
