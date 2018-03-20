@@ -4,7 +4,7 @@ import Vue from 'vue'
 
 import App from './App.vue'
 
-const vueApp = new Vue({
+module.exports = new Vue({
   el: '#vue',
   template: '<App/>',
   components: {

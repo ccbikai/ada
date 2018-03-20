@@ -51,7 +51,7 @@ const build = options => {
     options.debug && console.log(stats.toJson('minimal'))
     const info = stats.toJson()
 
-    if (stats.hasWarnings()) {
+    if (stats.hasWarnings() && info.warnings.length) {
       console.warn(info.warnings)
     }
 
