@@ -51,7 +51,7 @@ const makeConig = (options) => {
       path: path.resolve(options.cwd, options.distDir),
       publicPath: options.publicPath || `/${options.distDir}/`,
       filename: 'js/[name].js',
-      chunkFilename: 'js/[chunkhash].bundle.js',
+      chunkFilename: 'js/[name].bundle.js',
       sourceMapFilename: 'maps/[file].map'
     },
     context: path.resolve(__dirname),
