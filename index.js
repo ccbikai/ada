@@ -1,5 +1,7 @@
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
+const path = require('path')
+const rimraf = require('rimraf')
 
 const getWebpackConfig = require('./webpack.config')
 
@@ -11,18 +13,19 @@ const startServer = options => {
   if (!options.build) {
     Object.keys(webpackConfig.entry).forEach(name => {
       webpackConfig.entry[name] = [`webpack-dev-server/client?http://${options.host}:${options.port}`, webpackConfig.entry[name]]
+
+      if (options.hot) {
+        webpackConfig.entry[name].push('webpack/hot/dev-server')
+      }
     })
   }
 
   const compiler = webpack(webpackConfig)
   const devServerOptions = Object.assign({}, webpackConfig.devServer, {
     inline: true,
+    hot: options.hot,
     quiet: true,
     publicPath: `/${options.distDir}/`,
-    stats: {
-      colors: true,
-      children: false
-    },
     disableHostCheck: true
   })
 
@@ -53,7 +56,7 @@ const build = options => {
     options.debug && console.log(stats.toJson('minimal'))
     const info = stats.toJson()
 
-    if (stats.hasWarnings()) {
+    if (stats.hasWarnings() && info.warnings.length) {
       console.warn(info.warnings)
     }
 
@@ -61,6 +64,8 @@ const build = options => {
       console.error(info.errors)
       process.exit(1)
     }
+
+    rimraf.sync(`${path.resolve(options.cwd, options.distDir)}/**/*.scss.js`)
   })
 }
 

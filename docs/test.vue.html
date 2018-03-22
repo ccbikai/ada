@@ -8,17 +8,10 @@
     <script type="text/javascript">
         (function(d,c){var e=d.documentElement,a="orientationchange" in window?"orientationchange":"resize",b=function(){var f=e.clientWidth;if(!f){return}if(f>=750){e.style.fontSize="40px"}else{e.style.fontSize=40*(f/750)+"px"}};if(!d.addEventListener){return}b();c.addEventListener(a,b,false);d.addEventListener("DOMContentLoaded",b,false)})(document,window); // eslint-disable-line
     </script>
-    <link rel="stylesheet" href="/dist/css/test.css">
+    <link rel="stylesheet" href="/dist/css/test.vue.css">
 </head>
 <body>
-    <div class="big"></div>
-    <div class="logo"></div>
-    <hr>
-    <div class="icon icon-logo"></div>
-    <hr>
-    <div id="hbs-test"></div>
-    <hr>
-    <a class="link" href="./index.html">Index</a>
-    <script src="/dist/js/test.js"></script>
+    <div id="vue"></div>
+    <script src="/dist/js/test.vue.js"></script>
 </body>
 </html>

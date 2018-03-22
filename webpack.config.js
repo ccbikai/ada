@@ -5,7 +5,9 @@ const webpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const SpritesmithPlugin = require('webpack-spritesmith')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
+const getLoader = require('./loaders')
 
 const getEntry = (srcDir, options) => {
   options.debug && console.log('find js files in: ' + path.resolve(srcDir, 'js/*.js'))
@@ -40,45 +42,50 @@ const makeConig = (options) => {
   options.cwd = path.resolve(options.cwd)
 
   let config = {
+    mode: options.build ? 'production' : 'development',
+    performance: {
+      maxEntrypointSize: options.build ? 250000 : 2000000,
+      maxAssetSize: options.build ? 250000 : 2000000
+    },
     entry: getEntry(path.resolve(options.cwd, options.srcDir), options),
     output: {
       path: path.resolve(options.cwd, options.distDir),
+      publicPath: options.publicPath || `/${options.distDir}/`,
       filename: 'js/[name].js',
+      chunkFilename: 'js/[name].bundle.js',
       sourceMapFilename: 'maps/[file].map'
     },
     context: path.resolve(__dirname),
     devtool: options.build ? 'hidden-source-map' : 'inline-source-map',
     resolve: {
+      extensions: ['.js', '.json', '.jsx'],
       modules: [
         path.resolve(options.cwd, options.srcDir, 'hbs'),
+        path.resolve(options.cwd, options.srcDir, 'js'),
+        path.resolve(options.cwd, options.srcDir, 'components'),
+        path.resolve(options.cwd, options.srcDir, 'scss'),
         'node_modules'
-      ]
+      ],
+      alias: {
+        vue: 'vue/dist/vue.common.js'
+      }
     },
     module: {
       rules: [{
-        test: /\.js$/i,
+        test: /\.(js|jsx)$/i,
         exclude: [/node_modules/],
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-            presets: [require('babel-preset-env')],
-            plugins: [require('babel-plugin-transform-runtime')]
-          }
-        }
+        use: getLoader('js', options)
       }, {
         test: /\.(png|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: options.build ? '[name].[hash:6].[ext]?imageslim' : '[name].[hash:6].[ext]',
-              outputPath: 'images/',
-              publicPath: '../images/',
-              useRelativePath: false
-            }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: options.build ? '[name].[hash:6].[ext]?imageslim' : '[name].[hash:6].[ext]',
+            outputPath: 'images/',
+            publicPath: '../images/',
+            useRelativePath: false
           }
-        ]
+        }]
       }, {
         test: /\.(hbs|handlebars)$/i,
         use: {
@@ -90,38 +97,35 @@ const makeConig = (options) => {
           }
         }
       }, {
-        test: /\.scss$/i,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              sourceMap: true
+        test: /\.(scss|css)$/i,
+        use: getLoader('scss', options)
+      }, {
+        test: /\.vue$/,
+        use: {
+          loader: 'vue-loader',
+          options: {
+            hotReload: options.hot,
+            loaders: {
+              js: getLoader('js'),
+              css: getLoader('scss', Object.assign({styleFallbackLoader: 'vue-style-loader'}, options)),
+              scss: getLoader('scss', Object.assign({styleFallbackLoader: 'vue-style-loader'}, options))
             }
-          }, {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-              config: {
-                path: path.resolve(__dirname, 'postcss.config.js'),
-                ctx: options
-              }
-            }
-          }, {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
-          }]
-        })
+          }
+        }
       }]
     },
     plugins: [
       new ExtractTextPlugin({
         filename: (getPath) => {
-          return getPath('css/[name]').replace('.scss', '.css')
+          const rewPath = getPath('css/[name]')
+
+          if (rewPath.endsWith('.scss')) {
+            return rewPath.replace('.scss', '.css')
+          }
+
+          return rewPath + '.css'
         },
+        disable: options.hot,
         allChunks: true
       }),
       new SpritesmithPlugin({
@@ -144,29 +148,17 @@ const makeConig = (options) => {
   }
 
   if (options.build) {
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: '"production"'
-        }
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        exclude: [/node_modules/],
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-        uglifyOptions: {
-          compress: {
-            warnings: false
-          },
-          comments: false
-        }
-      })
-    )
+    // 构建时需要追加的插件
   } else {
     config.plugins.push(
       new FriendlyErrorsWebpackPlugin()
     )
+
+    if (options.hot) {
+      config.plugins.push(
+        new webpack.HotModuleReplacementPlugin()
+      )
+    }
   }
 
   if (options.analyze) {

@@ -29,6 +29,15 @@ yargs.options('debug', {
   default: 'dist',
   alias: 'distDir',
   describe: '编译后代码目录'
+}).options('public', {
+  type: 'string',
+  default: '',
+  alias: 'publicPath',
+  describe: '静态资源CDN目录'
+}).options('hot', {
+  type: 'boolean',
+  default: false,
+  describe: '使用热刷新模式'
 }).options('noRem', {
   type: 'boolean',
   default: false,
@@ -46,6 +55,11 @@ yargs.options('debug', {
   default: '',
   alias: 'c',
   describe: '自定义 webpack 配置'
+}).options('postcss', {
+  type: 'string',
+  default: '',
+  alias: 'p',
+  describe: '自定义 postcss 配置'
 })
 
 yargs.usage('$0 [cmd] [args]') // eslint-disable-line
