@@ -13,12 +13,17 @@ const startServer = options => {
   if (!options.build) {
     Object.keys(webpackConfig.entry).forEach(name => {
       webpackConfig.entry[name] = [`webpack-dev-server/client?http://${options.host}:${options.port}`, webpackConfig.entry[name]]
+
+      if (options.hot) {
+        webpackConfig.entry[name].push('webpack/hot/dev-server')
+      }
     })
   }
 
   const compiler = webpack(webpackConfig)
   const devServerOptions = Object.assign({}, webpackConfig.devServer, {
     inline: true,
+    hot: options.hot,
     quiet: true,
     publicPath: `/${options.distDir}/`,
     disableHostCheck: true

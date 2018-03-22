@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Link } from 'react-router-dom'
 import Loadable from 'react-loadable'
+import { hot } from 'react-hot-loader'
 
 import Header from 'Header'
 import Home from 'Home'
@@ -31,4 +32,4 @@ App.propTypes = {
   actions: PropTypes.object.isRequired
 }
 
-export default App
+export default hot(module)(App)

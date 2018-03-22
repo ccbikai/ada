@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = (ctx) => {
   // const { file, options, env } = ctx
-  const {options} = ctx
+  const {options = {}} = ctx
   const config = {
     plugins: {}
   }

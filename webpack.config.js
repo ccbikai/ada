@@ -1,5 +1,6 @@
 const glob = require('glob')
 const path = require('path')
+const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
@@ -103,7 +104,7 @@ const makeConig = (options) => {
         use: {
           loader: 'vue-loader',
           options: {
-            hotReload: false,
+            hotReload: options.hot,
             loaders: {
               js: getLoader('js'),
               css: getLoader('scss', Object.assign({styleFallbackLoader: 'vue-style-loader'}, options)),
@@ -124,6 +125,7 @@ const makeConig = (options) => {
 
           return rewPath + '.css'
         },
+        disable: options.hot,
         allChunks: true
       }),
       new SpritesmithPlugin({
@@ -151,6 +153,12 @@ const makeConig = (options) => {
     config.plugins.push(
       new FriendlyErrorsWebpackPlugin()
     )
+
+    if (options.hot) {
+      config.plugins.push(
+        new webpack.HotModuleReplacementPlugin()
+      )
+    }
   }
 
   if (options.analyze) {

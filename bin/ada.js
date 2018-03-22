@@ -34,6 +34,10 @@ yargs.options('debug', {
   default: '',
   alias: 'publicPath',
   describe: '静态资源CDN目录'
+}).options('hot', {
+  type: 'boolean',
+  default: false,
+  describe: '使用热刷新模式'
 }).options('noRem', {
   type: 'boolean',
   default: false,

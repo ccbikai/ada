@@ -1,4 +1,4 @@
 {
     "presets": ["env", "react"],
-    "plugins": ["transform-runtime", "syntax-dynamic-import"]
+    "plugins": ["transform-runtime", "syntax-dynamic-import", "react-hot-loader/babel"]
 }
