@@ -4,7 +4,15 @@ module.exports = (ctx) => {
   // const { file, options, env } = ctx
   const {options = {}} = ctx
   const config = {
-    plugins: {}
+    plugins: {
+      cssnano: {
+        safe: true,
+        autoprefixer: {
+          add: true,
+          remove: false
+        }
+      }
+    }
   }
 
   if (!options.noRem) {

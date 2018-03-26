@@ -106,7 +106,7 @@ const makeConig = (options) => {
           options: {
             hotReload: options.hot,
             loaders: {
-              js: getLoader('js'),
+              js: getLoader('js', options),
               css: getLoader('scss', Object.assign({styleFallbackLoader: 'vue-style-loader'}, options)),
               scss: getLoader('scss', Object.assign({styleFallbackLoader: 'vue-style-loader'}, options))
             }
@@ -115,6 +115,17 @@ const makeConig = (options) => {
       }]
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          BROWSERSLIST: JSON.stringify(`
+          > 1%
+          last 2 versions
+          android >=4
+          ios >=8
+          ie >=8
+          `)
+        }
+      }),
       new ExtractTextPlugin({
         filename: (getPath) => {
           const rewPath = getPath('css/[name]')

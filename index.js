@@ -15,7 +15,7 @@ const startServer = options => {
       webpackConfig.entry[name] = [`webpack-dev-server/client?http://${options.host}:${options.port}`, webpackConfig.entry[name]]
 
       if (options.hot) {
-        webpackConfig.entry[name].push('webpack/hot/dev-server')
+        webpackConfig.entry[name].push('webpack/hot/only-dev-server')
       }
     })
   }
