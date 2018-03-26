@@ -34,10 +34,14 @@ yargs.options('debug', {
   default: '',
   alias: 'publicPath',
   describe: '静态资源CDN目录'
-}).options('hot', {
+}).options('hotVue', {
   type: 'boolean',
   default: false,
-  describe: '使用热刷新模式'
+  describe: 'Vue 使用热刷新模式'
+}).options('hotReact', {
+  type: 'boolean',
+  default: false,
+  describe: 'React 使用热刷新模式'
 }).options('noRem', {
   type: 'boolean',
   default: false,

@@ -10,7 +10,7 @@
     "lint": "eslint --fix --ext .js,.jsx,.vue .",
     "build": "node bin/ada.js build --cwd docs --noPx",
     "dev": "node bin/ada.js --cwd docs --noPx",
-    "dev:hot": "node bin/ada.js --cwd docs --noPx --hot",
+    "dev:hot": "node bin/ada.js --cwd docs --noPx --hotReact --hotVue",
     "test": "npm run lint && npm run build"
   },
   "repository": {

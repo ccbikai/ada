@@ -104,7 +104,7 @@ const makeConig = (options) => {
         use: {
           loader: 'vue-loader',
           options: {
-            hotReload: options.hot,
+            hotReload: options.hotVue,
             loaders: {
               js: getLoader('js', options),
               css: getLoader('scss', Object.assign({styleFallbackLoader: 'vue-style-loader'}, options)),

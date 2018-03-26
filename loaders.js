@@ -14,7 +14,7 @@ module.exports = (type, options = {}) => {
         plugins: [
           require.resolve('babel-plugin-transform-runtime'),
           require.resolve('babel-plugin-syntax-dynamic-import'),
-          !options.build && options.hot && require.resolve('react-hot-loader/babel')
+          !options.build && options.hotReact && require.resolve('react-hot-loader/babel')
         ].filter(Boolean)
       }
     }
