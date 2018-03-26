@@ -1,12 +1,21 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-module.exports = (type, options) => {
+module.exports = (type, options = {}) => {
   if (type === 'js') {
     return {
       loader: 'babel-loader',
       options: {
-        cacheDirectory: true
+        cacheDirectory: true,
+        presets: [
+          require.resolve('babel-preset-env'),
+          require.resolve('babel-preset-react')
+        ],
+        plugins: [
+          require.resolve('babel-plugin-transform-runtime'),
+          require.resolve('babel-plugin-syntax-dynamic-import'),
+          !options.build && options.hotReact && require.resolve('react-hot-loader/babel')
+        ].filter(Boolean)
       }
     }
   } else {
@@ -16,14 +25,7 @@ module.exports = (type, options) => {
         loader: 'css-loader',
         options: {
           importLoaders: 2,
-          sourceMap: true,
-          minimize: {
-            safe: true,
-            autoprefixer: {
-              add: true,
-              remove: false
-            }
-          }
+          sourceMap: true
         }
       }, {
         loader: 'postcss-loader',

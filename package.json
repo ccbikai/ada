@@ -10,7 +10,7 @@
     "lint": "eslint --fix --ext .js,.jsx,.vue .",
     "build": "node bin/ada.js build --cwd docs --noPx",
     "dev": "node bin/ada.js --cwd docs --noPx",
-    "dev:hot": "node bin/ada.js --cwd docs --noPx --hot",
+    "dev:hot": "node bin/ada.js --cwd docs --noPx --hotReact --hotVue",
     "test": "npm run lint && npm run build"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "css-loader": "^0.28.11",
+    "cssnano": "^3.10.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
     "friendly-errors-webpack-plugin": "^1.6.1",

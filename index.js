@@ -6,6 +6,8 @@ const rimraf = require('rimraf')
 const getWebpackConfig = require('./webpack.config')
 
 const startServer = options => {
+  options.hot = options.hotReact || options.hotVue || false
+
   const webpackConfig = getWebpackConfig(options)
 
   options.debug && console.log('webpackConfig:\n', Object.assign({}, webpackConfig))
@@ -15,7 +17,7 @@ const startServer = options => {
       webpackConfig.entry[name] = [`webpack-dev-server/client?http://${options.host}:${options.port}`, webpackConfig.entry[name]]
 
       if (options.hot) {
-        webpackConfig.entry[name].push('webpack/hot/dev-server')
+        webpackConfig.entry[name].push('webpack/hot/only-dev-server')
       }
     })
   }
