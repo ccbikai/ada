@@ -1,11 +1,16 @@
 const merge = require('lodash/merge')
 const find = require('./utils/find')
 const read = require('./utils/read')
+const browserlistConfig = require('./browserlist.config')
 
 module.exports = options => {
   let babelRc = {
     presets: [
-      require.resolve('babel-preset-env'),
+      [require.resolve('babel-preset-env'), {
+        targets: {
+          browsers: browserlistConfig(options)
+        }
+      }],
       require.resolve('babel-preset-react')
     ],
     plugins: [
