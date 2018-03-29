@@ -1,4 +1,5 @@
 const path = require('path')
+const browserlistConfig = require('./browserlist.config')
 
 module.exports = (ctx) => {
   // const { file, options, env } = ctx
@@ -9,7 +10,8 @@ module.exports = (ctx) => {
         safe: true,
         autoprefixer: {
           add: true,
-          remove: false
+          remove: false,
+          browsers: browserlistConfig(options)
         }
       }
     }

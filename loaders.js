@@ -1,22 +1,14 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const babelConfig = require('./babel.config')
 
 module.exports = (type, options = {}) => {
   if (type === 'js') {
     return {
       loader: 'babel-loader',
-      options: {
-        cacheDirectory: true,
-        presets: [
-          require.resolve('babel-preset-env'),
-          require.resolve('babel-preset-react')
-        ],
-        plugins: [
-          require.resolve('babel-plugin-transform-runtime'),
-          require.resolve('babel-plugin-syntax-dynamic-import'),
-          !options.build && options.hotReact && require.resolve('react-hot-loader/babel')
-        ].filter(Boolean)
-      }
+      options: Object.assign({
+        cacheDirectory: true
+      }, babelConfig(options))
     }
   } else {
     return ExtractTextPlugin.extract({
