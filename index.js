@@ -28,7 +28,10 @@ const startServer = options => {
     hot: options.hot,
     quiet: true,
     publicPath: `/${options.distDir}/`,
-    disableHostCheck: true
+    disableHostCheck: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   })
 
   options.debug && console.log('startServer options:\n', devServerOptions)

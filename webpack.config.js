@@ -50,7 +50,7 @@ const makeConig = (options) => {
     entry: getEntry(path.resolve(options.cwd, options.srcDir), options),
     output: {
       path: path.resolve(options.cwd, options.distDir),
-      publicPath: options.publicPath || `/${options.distDir}/`,
+      publicPath: options.publicPath || `${options.protocol || 'http:'}//${options.host}:${options.port}/${options.distDir}/`,
       filename: 'js/[name].js',
       chunkFilename: 'js/[name].bundle.js',
       sourceMapFilename: 'maps/[file].map'
@@ -76,14 +76,19 @@ const makeConig = (options) => {
         exclude: [/node_modules/],
         use: getLoader('js', options)
       }, {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff)$/i,
         use: [{
           loader: 'file-loader',
           options: {
             name: options.build ? '[name].[hash:6].[ext]?imageslim' : '[name].[hash:6].[ext]',
-            outputPath: 'images/',
-            publicPath: '../images/',
-            useRelativePath: false
+            outputPath: 'assets/',
+            publicPath: (file) => {
+              if (!options.build) {
+                return `${options.protocol || 'http:'}//${options.host}:${options.port}/${options.distDir}/assets/${file}`
+              }
+
+              return '../assets/' + file
+            }
           }
         }]
       }, {
