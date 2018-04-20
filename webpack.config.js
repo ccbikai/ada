@@ -50,7 +50,7 @@ const makeConig = (options) => {
     entry: getEntry(path.resolve(options.cwd, options.srcDir), options),
     output: {
       path: path.resolve(options.cwd, options.distDir),
-      publicPath: options.publicPath || `${options.protocol || 'http:'}//${options.host}:${options.port}/${options.distDir}/`,
+      publicPath: options.build ? (options.publicPath || `/${options.distDir}/`) : `${options.protocol || 'http:'}//${options.host}:${options.port}/${options.distDir}/`,
       filename: 'js/[name].js',
       chunkFilename: 'js/[name].bundle.js',
       sourceMapFilename: 'maps/[file].map'
@@ -80,14 +80,20 @@ const makeConig = (options) => {
         use: [{
           loader: 'file-loader',
           options: {
-            name: options.build ? '[name].[hash:6].[ext]?imageslim' : '[name].[hash:6].[ext]',
-            outputPath: 'assets/',
-            publicPath: (file) => {
-              if (!options.build) {
-                return `${options.protocol || 'http:'}//${options.host}:${options.port}/${options.distDir}/assets/${file}`
+            name (file) {
+              if (options.build && /\.(png|jpg|gif)$/i.test(file)) {
+                return '[name].[hash:6].[ext]?imageslim'
               }
 
-              return '../assets/' + file
+              return '[name].[hash:6].[ext]'
+            },
+            outputPath: 'assets/',
+            publicPath: (file) => {
+              if (options.build) {
+                return (options.publicPath || `/${options.distDir}/`) + 'assets/' + file
+              }
+
+              return `${options.protocol || 'http:'}//${options.host}:${options.port}/${options.distDir}/assets/${file}`
             }
           }
         }]
