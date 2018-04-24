@@ -56,7 +56,7 @@ const makeConig = (options) => {
       sourceMapFilename: 'maps/[file].map'
     },
     context: path.resolve(__dirname),
-    devtool: options.build ? 'hidden-source-map' : 'inline-source-map',
+    devtool: options.build ? 'hidden-source-map' : 'source-map',
     resolve: {
       extensions: ['.js', '.json', '.jsx'],
       modules: [
@@ -126,17 +126,6 @@ const makeConig = (options) => {
       }]
     },
     plugins: [
-      new webpack.DefinePlugin({
-        'process.env': {
-          BROWSERSLIST: JSON.stringify(`
-          > 1%
-          last 2 versions
-          android >=4
-          ios >=8
-          ie >=8
-          `)
-        }
-      }),
       new ExtractTextPlugin({
         filename: (getPath) => {
           const rewPath = getPath('css/[name]')
