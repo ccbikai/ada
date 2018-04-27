@@ -8,14 +8,18 @@
 
     <hr>
     <router-view/>
+    <hr>
+    <Static/>
   </div>
 </template>
 
 <script>
 import Header from 'Header.vue'
 
+const Static = () => import(/* webpackChunkName: "vue-static" */'Static.vue')
+
 export default {
-  components: { Header }
+  components: { Header, Static }
 }
 </script>
 

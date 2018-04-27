@@ -9,7 +9,11 @@ import Home from 'Home'
 import Loading from 'Loading'
 
 const About = Loadable({
-  loader: () => import('About'),
+  loader: () => import(/* webpackChunkName: "react-import" */'About'),
+  loading: Loading
+})
+const Static = Loadable({
+  loader: () => import(/* webpackChunkName: "react-import" */'Static'),
   loading: Loading
 })
 
@@ -24,6 +28,8 @@ function App ({name, actions}) {
     <hr />
     <Route exact path='/' component={Home} />
     <Route path='/about' component={About} />
+    <hr />
+    <Static />
   </div>
 }
 
