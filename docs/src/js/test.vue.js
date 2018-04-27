@@ -25,10 +25,7 @@ sync(store, router)
 
 module.exports = new Vue({
   el: '#vue',
-  template: '<App/>',
-  components: {
-    App
-  },
   store,
-  router
+  router,
+  render: h => h(App)
 })

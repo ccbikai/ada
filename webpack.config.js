@@ -60,14 +60,15 @@ const makeConig = (options) => {
     resolve: {
       extensions: ['.js', '.json', '.jsx'],
       modules: [
-        path.resolve(options.cwd, options.srcDir, 'hbs'),
         path.resolve(options.cwd, options.srcDir, 'js'),
+        path.resolve(options.cwd, options.srcDir, 'hbs'),
+        path.resolve(options.cwd, options.srcDir, 'vue'),
         path.resolve(options.cwd, options.srcDir, 'components'),
         path.resolve(options.cwd, options.srcDir, 'scss'),
         'node_modules'
       ],
       alias: {
-        vue: 'vue/dist/vue.common.js'
+        'vue$': 'vue/dist/vue.esm.js'
       }
     },
     module: {
