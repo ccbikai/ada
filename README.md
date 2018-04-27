@@ -72,40 +72,10 @@ ada.js [cmd] [args]
 
 ```bash
 .
-├── dist
-│   ├── assets
-│   │   ├── big.db1966.png
-│   │   ├── logo.a771e8.png
-│   │   └── sprites.e65978.png
-│   ├── css
-│   │   ├── index.css
-│   │   ├── test.css
-│   │   ├── test.react.css
-│   │   └── test.vue.css
-│   ├── js
-│   │   ├── 0.bundle.js
-│   │   ├── 1.bundle.js
-│   │   ├── index.js
-│   │   ├── test.js
-│   │   ├── test.react.js
-│   │   ├── test.vue.js
-│   │   └── vue-about.bundle.js
-│   └── maps
-│       ├── css
-│       │   ├── index.css.map
-│       │   ├── test.css.map
-│       │   ├── test.react.css.map
-│       │   └── test.vue.css.map
-│       └── js
-│           ├── 0.bundle.js.map
-│           ├── 1.bundle.js.map
-│           ├── index.js.map
-│           ├── index.scss.js.map
-│           ├── test.js.map
-│           ├── test.react.js.map
-│           ├── test.scss.js.map
-│           ├── test.vue.js.map
-│           └── vue-about.bundle.js.map
+├── index.html
+├── test.html
+├── test.react.html
+├── test.vue.html
 ├── src
 │   ├── components
 │   │   ├── About.jsx
@@ -114,7 +84,9 @@ ada.js [cmd] [args]
 │   │   ├── Header.vue
 │   │   ├── Home.jsx
 │   │   ├── Home.vue
-│   │   └── Loading.jsx
+│   │   ├── Loading.jsx
+│   │   ├── Static.jsx
+│   │   └── Static.vue
 │   ├── hbs
 │   │   ├── helpers
 │   │   │   └── sex.js
@@ -122,10 +94,13 @@ ada.js [cmd] [args]
 │   │   └── partials
 │   │       └── footer.hbs
 │   ├── icons
-│   │   ├── logo.png
-│   │   └── logo2.png
+│   │   ├── facebook.png
+│   │   ├── html5.png
+│   │   ├── instagram.png
+│   │   ├── twitter.png
+│   │   └── youtube.png
 │   ├── images
-│   │   ├── big.png
+│   │   ├── big.jpg
 │   │   └── logo.png
 │   ├── js
 │   │   ├── App.jsx
@@ -159,9 +134,40 @@ ada.js [cmd] [args]
 │   └── sprites
 │       ├── sprites.png
 │       └── sprites.scss
-├── index.html
-├── test.html
-├── test.react.html
-└── test.vue.html
+└── dist
+    ├── assets
+    │   ├── big.875f6f.jpg
+    │   └── sprites.a78a7f.png
+    ├── css
+    │   ├── index.css
+    │   ├── test.css
+    │   ├── test.react.css
+    │   └── test.vue.css
+    ├── js
+    │   ├── 0.bundle.js
+    │   ├── index.js
+    │   ├── react-import.bundle.js
+    │   ├── test.js
+    │   ├── test.react.js
+    │   ├── test.vue.js
+    │   ├── vue-about.bundle.js
+    │   └── vue-static.bundle.js
+    └── maps
+        ├── css
+        │   ├── index.css.map
+        │   ├── test.css.map
+        │   ├── test.react.css.map
+        │   └── test.vue.css.map
+        └── js
+            ├── 0.bundle.js.map
+            ├── index.js.map
+            ├── index.scss.js.map
+            ├── react-import.bundle.js.map
+            ├── test.js.map
+            ├── test.react.js.map
+            ├── test.scss.js.map
+            ├── test.vue.js.map
+            ├── vue-about.bundle.js.map
+            └── vue-static.bundle.js.map
 ```
 
