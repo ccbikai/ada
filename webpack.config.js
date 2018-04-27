@@ -78,8 +78,9 @@ const makeConig = (options) => {
       }, {
         test: /\.(png|jpg|gif|svg|eot|ttf|woff)$/i,
         use: [{
-          loader: 'file-loader',
+          loader: 'url-loader',
           options: {
+            limit: 4096,
             name (file) {
               if (options.build && /\.(png|jpg|gif)$/i.test(file)) {
                 return '[name].[hash:6].[ext]?imageslim'
