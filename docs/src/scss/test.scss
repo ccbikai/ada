@@ -2,23 +2,66 @@
 
 body {
     background: #f0f0f0;
+}
 
-    .big {
-        background: url("../images/big.png");
-        width: 300px;
-        height: 300px;
-    }
+hr {
+    margin: 20px 0;
+}
 
-    .logo {
-        display: flex;
-        transform: scale(2);
-        color: #fff;
-        background: url("../images/logo.png");
-        width: 100px;
-        height: 100px;
-    }
+.wrap {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
 
-    .icon-logo {
-        @include sprite($logo);
+    h3 {
+        color: #444;
     }
+}
+
+.big {
+    background: url("../images/big.png");
+    // width: 300px;
+    height: 300px;
+}
+
+.logo {
+    display: flex;
+    transform: scale(0.9);
+    color: #fff;
+    background: url("../images/logo.png");
+    background-size: 100%;
+    width: 40px;
+    height: 40px;
+}
+
+.icon {
+    display: inline-block;
+    margin: 10px 5px;
+    width: 32px;
+    height: 32px;
+}
+
+.icon-html5 {
+    @include sprite($html5);
+}
+
+.icon-twitter {
+    @include sprite($twitter);
+}
+
+.icon-instagram {
+    @include sprite($instagram);
+}
+
+.icon-facebook {
+    @include sprite($facebook);
+}
+
+.icon-youtube {
+    @include sprite($youtube);
+}
+
+.link {
+    color: #444;
+    margin: 0 10px;
 }

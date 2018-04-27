@@ -15,10 +15,12 @@
 
 1. JavaScript 支持 ES6+ 的语法，构建代码支持 Uglify；
 1. CSS 支持 SCSS 语法，使用 Postcss 做代码优化，支持 Cssnano, Autoprefixer;
-1. 支持实时刷新;
+1. 支持 React, Vue 打包;
+1. 支持实时刷新, React 和 Vue 可以热刷新;
 1. 支持自动生成雪碧图;
 1. 支持自动转换 px 到 rem;
-1. 支持 SourceMap，方便调试。
+1. 支持 SourceMap，方便调试;
+1. 可以自定义 Webpack, Postcss 配置。
 
 ## 安装
 
@@ -34,23 +36,30 @@ npm i -g ada
 1. 运行 `ada -h`，查看各参数功能。
 
 ```bash
-ada [cmd] [args]
+ada.js [cmd] [args]
 
 命令：
-  ada build  生成线上包
-  ada        打开开发服务器                                             [默认值]
+  ada.js build  生成线上包
+  ada.js        打开开发服务器                                          [默认值]
 
 选项：
-  --debug            调试模式                             [布尔] [默认值: false]
-  --host             服务器监听IP                 [字符串] [默认值: "127.0.0.1"]
-  --port             服务器监听端口                        [数字] [默认值: 8080]
-  --cwd              工作目录  [字符串] [默认值: "/Users/ccbikai/code/node/ada"]
-  --src, --srcDir    源代码目录                         [字符串] [默认值: "src"]
-  --dist, --distDir  编译后代码目录                    [字符串] [默认值: "dist"]
-  --noRem            不自动转换 rem                       [布尔] [默认值: false]
-  --noPx             自动转换 rem, 并且替换掉 px          [布尔] [默认值: false]
-  -h, --help         显示帮助信息                                         [布尔]
-  -v, --version      显示版本号                                           [布尔]
+  --debug                 调试模式                        [布尔] [默认值: false]
+  --host                  服务器监听IP            [字符串] [默认值: "127.0.0.1"]
+  --port                  服务器监听端口                   [数字] [默认值: 8080]
+  --cwd                   工作目录
+                               [字符串] [默认值: "/Users/ccbikai/code/node/ada"]
+  --src, --srcDir         源代码目录                    [字符串] [默认值: "src"]
+  --dist, --distDir       编译后代码目录               [字符串] [默认值: "dist"]
+  --public, --publicPath  静态资源CDN目录                  [字符串] [默认值: ""]
+  --hotVue                Vue 使用热刷新模式              [布尔] [默认值: false]
+  --hotReact              React 使用热刷新模式            [布尔] [默认值: false]
+  --noRem                 不自动转换 rem                  [布尔] [默认值: false]
+  --noPx                  自动转换 rem, 并且替换掉 px     [布尔] [默认值: false]
+  --analyze               开启性能分析模式                [布尔] [默认值: false]
+  --config, -c            自定义 webpack 配置              [字符串] [默认值: ""]
+  --postcss, -p           自定义 postcss 配置              [字符串] [默认值: ""]
+  -h, --help              显示帮助信息                                    [布尔]
+  -v, --version           显示版本号                                      [布尔]
 ```
 
 ## 示例代码
@@ -64,28 +73,54 @@ ada [cmd] [args]
 ```bash
 .
 ├── dist
+│   ├── assets
+│   │   ├── big.db1966.png
+│   │   ├── logo.a771e8.png
+│   │   └── sprites.e65978.png
 │   ├── css
 │   │   ├── index.css
-│   │   └── test.css
-│   ├── images
-│   │   ├── big.db1966.png
-│   │   └── logo.a771e8.png
+│   │   ├── test.css
+│   │   ├── test.react.css
+│   │   └── test.vue.css
 │   ├── js
+│   │   ├── 0.bundle.js
+│   │   ├── 1.bundle.js
 │   │   ├── index.js
-│   │   ├── index.scss.js
 │   │   ├── test.js
-│   │   └── test.scss.js
+│   │   ├── test.react.js
+│   │   ├── test.vue.js
+│   │   └── vue-about.bundle.js
 │   └── maps
 │       ├── css
 │       │   ├── index.css.map
-│       │   └── test.css.map
+│       │   ├── test.css.map
+│       │   ├── test.react.css.map
+│       │   └── test.vue.css.map
 │       └── js
+│           ├── 0.bundle.js.map
+│           ├── 1.bundle.js.map
 │           ├── index.js.map
 │           ├── index.scss.js.map
 │           ├── test.js.map
-│           └── test.scss.js.map
-├── index.html
+│           ├── test.react.js.map
+│           ├── test.scss.js.map
+│           ├── test.vue.js.map
+│           └── vue-about.bundle.js.map
 ├── src
+│   ├── components
+│   │   ├── About.jsx
+│   │   ├── About.vue
+│   │   ├── Header.jsx
+│   │   ├── Header.vue
+│   │   ├── Home.jsx
+│   │   ├── Home.vue
+│   │   └── Loading.jsx
+│   ├── hbs
+│   │   ├── helpers
+│   │   │   └── sex.js
+│   │   ├── main.hbs
+│   │   └── partials
+│   │       └── footer.hbs
 │   ├── icons
 │   │   ├── logo.png
 │   │   └── logo2.png
@@ -93,23 +128,40 @@ ada [cmd] [args]
 │   │   ├── big.png
 │   │   └── logo.png
 │   ├── js
-│   │   ├── common
+│   │   ├── App.jsx
+│   │   ├── App.vue
+│   │   ├── actions
 │   │   │   └── index.js
+│   │   ├── common
+│   │   │   ├── index.js
+│   │   │   └── lazy.js
 │   │   ├── index.js
-│   │   └── test.js
-│   └── scss
-│       ├── common
-│       │   └── layout.scss
-│       ├── index.scss
-│       └── test.scss
-└── test.html
+│   │   ├── mutations
+│   │   │   └── index.js
+│   │   ├── reducers
+│   │   │   ├── index.js
+│   │   │   └── name.js
+│   │   ├── routes
+│   │   │   └── index.js
+│   │   ├── test.js
+│   │   ├── test.react.js
+│   │   ├── test.vue.js
+│   │   └── types
+│   │       └── index.js
+│   ├── scss
+│   │   ├── common
+│   │   │   └── layout.scss
+│   │   ├── index.scss
+│   │   ├── test
+│   │   │   ├── react.scss
+│   │   │   └── vue.scss
+│   │   └── test.scss
+│   └── sprites
+│       ├── sprites.png
+│       └── sprites.scss
+├── index.html
+├── test.html
+├── test.react.html
+└── test.vue.html
 ```
 
-## 存在问题
-
-1. 多余的 .scss.js 文件未清理。
-
-## 待办事项
-
-* 支持 Vue 打包；
-* 支持 React 打包。
