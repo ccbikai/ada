@@ -1,4 +1,5 @@
 @import "common/layout.scss";
+@import "../iconfont/iconfont.css";
 
 body {
     background: #f0f0f0;
@@ -59,6 +60,11 @@ hr {
 
 .icon-youtube {
     @include sprite($youtube);
+}
+
+.iconfont {
+    font-size: 50px;
+    color: #444;
 }
 
 .link {
