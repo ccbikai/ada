@@ -16,6 +16,12 @@ export default function Static () {
     <span className='icon icon-facebook' />
     <span className='icon icon-youtube' />
     <hr />
+    <h3>iconfont 测试</h3>
+    <span className='iconfont icon-iPhone' />
+    <span className='iconfont icon-MacBookPro' />
+    <span className='iconfont icon-iPad' />
+    <span className='iconfont icon-AppleWatchSeries' />
+    <hr />
     <h3>其他页面</h3>
     <a className='link' href='./index.html'>Index</a>
     <a className='link' href='./test.html'>Test</a>

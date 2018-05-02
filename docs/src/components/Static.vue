@@ -13,6 +13,12 @@
     <span class="icon icon-facebook"/>
     <span class="icon icon-youtube"/>
     <hr>
+    <h3>iconfont 测试</h3>
+    <span class="iconfont icon-iPhone"/>
+    <span class="iconfont icon-MacBookPro"/>
+    <span class="iconfont icon-iPad"/>
+    <span class="iconfont icon-AppleWatchSeries"/>
+    <hr>
     <h3>其他页面</h3>
     <a
       class="link"
