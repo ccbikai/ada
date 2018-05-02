@@ -154,7 +154,7 @@ const makeConig = (options) => {
           cssImageRef: '../sprites/sprites.png'
         },
         spritesmithOptions: {
-          padding: 8
+          padding: 16
         }
       })
     ]
