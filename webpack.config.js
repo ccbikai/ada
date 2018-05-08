@@ -5,9 +5,10 @@ const webpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const SpritesmithPlugin = require('webpack-spritesmith')
+const { VueLoaderPlugin } = require('vue-loader')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
-const getLoader = require('./loaders')
+const babelConfig = require('./babel.config')
 
 const getEntry = (srcDir, options) => {
   options.debug && console.log('find js files in: ' + path.resolve(srcDir, 'js/*.js'))
@@ -74,8 +75,60 @@ const makeConig = (options) => {
     module: {
       rules: [{
         test: /\.(js|jsx)$/i,
-        exclude: [/node_modules/],
-        use: getLoader('js', options)
+        exclude: file => (
+          /node_modules/.test(file) &&
+          !/\.vue\.js/.test(file)
+        ),
+        use: {
+          loader: 'babel-loader',
+          options: Object.assign({
+            cacheDirectory: true
+          }, babelConfig(options))
+        }
+      }, {
+        test: /\.(scss|sass|css)$/i,
+        use: ExtractTextPlugin.extract({
+          fallback: 'vue-style-loader',
+          use: [{
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              sourceMap: true
+            }
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              config: {
+                path: path.resolve(__dirname, 'postcss.config.js'),
+                ctx: options
+              }
+            }
+          }, {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }]
+        })
+      }, {
+        test: /\.vue$/,
+        use: {
+          loader: 'vue-loader',
+          options: {
+            hotReload: options.hotVue
+          }
+        }
+      }, {
+        test: /\.(hbs|handlebars)$/i,
+        use: {
+          loader: 'handlebars-loader',
+          options: {
+            debug: options.debug,
+            helperDirs: [path.resolve(options.cwd, options.srcDir, 'hbs/helpers')],
+            partialDirs: [path.resolve(options.cwd, options.srcDir, 'hbs/partials')]
+          }
+        }
       }, {
         test: /\.(png|jpg|gif|svg|eot|ttf|woff)$/i,
         use: [{
@@ -99,35 +152,10 @@ const makeConig = (options) => {
             }
           }
         }]
-      }, {
-        test: /\.(hbs|handlebars)$/i,
-        use: {
-          loader: 'handlebars-loader',
-          options: {
-            debug: options.debug,
-            helperDirs: [path.resolve(options.cwd, options.srcDir, 'hbs/helpers')],
-            partialDirs: [path.resolve(options.cwd, options.srcDir, 'hbs/partials')]
-          }
-        }
-      }, {
-        test: /\.(scss|css)$/i,
-        use: getLoader('scss', options)
-      }, {
-        test: /\.vue$/,
-        use: {
-          loader: 'vue-loader',
-          options: {
-            hotReload: options.hotVue,
-            loaders: {
-              js: getLoader('js', options),
-              css: getLoader('scss', Object.assign({styleFallbackLoader: 'vue-style-loader'}, options)),
-              scss: getLoader('scss', Object.assign({styleFallbackLoader: 'vue-style-loader'}, options))
-            }
-          }
-        }
       }]
     },
     plugins: [
+      new VueLoaderPlugin(),
       new ExtractTextPlugin({
         filename: (getPath) => {
           const rewPath = getPath('css/[name]')
