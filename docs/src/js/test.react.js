@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import { createStore, bindActionCreators, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider, connect } from 'react-redux'
 
-import { Switch } from 'react-router'
+import { Switch } from 'react-router-dom'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createHashHistory'
 
