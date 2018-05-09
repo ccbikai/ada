@@ -29,6 +29,7 @@ const startServer = options => {
     quiet: true,
     publicPath: `/${options.distDir}/`,
     disableHostCheck: true,
+    compress: true,
     headers: {
       'Access-Control-Allow-Origin': '*'
     }

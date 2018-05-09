@@ -57,7 +57,7 @@ const makeConig = (options) => {
       sourceMapFilename: 'maps/[file].map'
     },
     context: path.resolve(__dirname),
-    devtool: options.build ? 'hidden-source-map' : 'source-map',
+    devtool: options.build ? 'hidden-source-map' : 'cheap-module-eval-source-map',
     resolve: {
       extensions: ['.js', '.json', '.jsx'],
       modules: [
