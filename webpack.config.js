@@ -5,7 +5,7 @@ const webpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const SpritesmithPlugin = require('webpack-spritesmith')
-const { VueLoaderPlugin } = require('vue-loader')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const babelConfig = require('./babel.config')
