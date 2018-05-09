@@ -71,3 +71,17 @@ hr {
     color: #444;
     margin: 0 10px;
 }
+
+
+@font-face {
+    font-family: "have-heart-one";
+    src: url('../iconfont/have-heart-one.eot?t=1525267376728'); /* IE9*/
+    src: url('../iconfont/have-heart-one.eot?t=1525267376728#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../iconfont/have-heart-one.woff?t=1525267376728') format('woff'),
+    url('../iconfont/have-heart-one.ttf?t=1525267376728') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../iconfont/have-heart-one.svg?t=1525267376728#have-heart-one') format('svg'); /* iOS 4.1- */
+}
+
+.font {
+    font-family: "have-heart-one";
+}
