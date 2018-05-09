@@ -5,7 +5,7 @@ const webpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const SpritesmithPlugin = require('webpack-spritesmith')
-const { VueLoaderPlugin } = require('vue-loader')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const babelConfig = require('./babel.config')
@@ -57,7 +57,7 @@ const makeConig = (options) => {
       sourceMapFilename: 'maps/[file].map'
     },
     context: path.resolve(__dirname),
-    devtool: options.build ? 'hidden-source-map' : 'source-map',
+    devtool: options.build ? 'hidden-source-map' : 'cheap-module-eval-source-map',
     resolve: {
       extensions: ['.js', '.json', '.jsx'],
       modules: [
