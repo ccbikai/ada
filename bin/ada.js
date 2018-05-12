@@ -79,7 +79,7 @@ yargs.usage('$0 [cmd] [args]') // eslint-disable-line
   .help('h')
   .alias('h', 'help')
   .alias('v', 'version')
-  .epilog('Copyright http://ada.miantiao.me')
+  .epilog('Copyright https://ada.js.org')
   .command('build', '生成线上包', () => {}, run)
   .command('$0', '打开开发服务器', () => {}, run)
   .argv
