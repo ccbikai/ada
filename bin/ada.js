@@ -1,7 +1,16 @@
 #!/usr/bin/env node
 
 const yargs = require('yargs')
-const ada = require('../index')
+
+function run () {
+  const ada = require('../index')
+
+  if (arguments[0]._.includes('build')) {
+    ada.build.apply(this, arguments)
+  } else {
+    ada.startServer.apply(this, arguments)
+  }
+}
 
 yargs.options('debug', {
   type: 'boolean',
@@ -70,7 +79,7 @@ yargs.usage('$0 [cmd] [args]') // eslint-disable-line
   .help('h')
   .alias('h', 'help')
   .alias('v', 'version')
-  .epilog('Copyright http://ada.miantiao.me')
-  .command('build', '生成线上包', () => {}, ada.build)
-  .command('$0', '打开开发服务器', () => {}, ada.startServer)
+  .epilog('Copyright https://ada.js.org')
+  .command('build', '生成线上包', () => {}, run)
+  .command('$0', '打开开发服务器', () => {}, run)
   .argv

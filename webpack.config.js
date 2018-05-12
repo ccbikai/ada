@@ -48,7 +48,7 @@ const makeConig = (options) => {
       maxEntrypointSize: options.build ? 250000 : 2000000,
       maxAssetSize: options.build ? 250000 : 2000000
     },
-    entry: getEntry(path.resolve(options.cwd, options.srcDir), options),
+    entry: () => getEntry(path.resolve(options.cwd, options.srcDir), options),
     output: {
       path: path.resolve(options.cwd, options.distDir),
       publicPath: options.build ? (options.publicPath || `/${options.distDir}/`) : `${options.protocol || 'http:'}//${options.host}:${options.port}/${options.distDir}/`,
