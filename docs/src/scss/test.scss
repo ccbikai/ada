@@ -2,86 +2,86 @@
 @import "../iconfont/iconfont.css";
 
 body {
-    background: #f0f0f0;
+  background: #f0f0f0;
 }
 
 hr {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .wrap {
-    width: 100%;
-    max-width: 750px;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
 
-    h3 {
-        color: #444;
-    }
+  h3 {
+    color: #444;
+  }
 }
 
 .big {
-    background: url("../images/big.jpg");
-    // width: 300px;
-    height: 300px;
+  background: url("../images/big.jpg");
+  // width: 300px;
+  height: 300px;
 }
 
 .logo {
-    display: flex;
-    transform: scale(0.9);
-    color: #fff;
-    background: url("../images/logo.png");
-    background-size: 100%;
-    width: 40px;
-    height: 40px;
+  display: flex;
+  transform: scale(0.9);
+  color: #fff;
+  background: url("../images/logo.png");
+  background-size: 100%;
+  width: 40px;
+  height: 40px;
 }
 
 .icon {
-    display: inline-block;
-    margin: 10px 5px;
-    width: 32px;
-    height: 32px;
+  display: inline-block;
+  margin: 10px 5px;
+  width: 32px;
+  height: 32px;
 }
 
 .icon-html5 {
-    @include sprite($html5);
+  @include sprite($html5);
 }
 
 .icon-twitter {
-    @include sprite($twitter);
+  @include sprite($twitter);
 }
 
 .icon-instagram {
-    @include sprite($instagram);
+  @include sprite($instagram);
 }
 
 .icon-facebook {
-    @include sprite($facebook);
+  @include sprite($facebook);
 }
 
 .icon-youtube {
-    @include sprite($youtube);
+  @include sprite($youtube);
 }
 
 .iconfont {
-    font-size: 50px;
-    color: #444;
+  font-size: 50px;
+  color: #444;
 }
 
 .link {
-    color: #444;
-    margin: 0 10px;
+  color: #444;
+  margin: 0 10px;
 }
 
-
 @font-face {
-    font-family: "have-heart-one";
-    src: url('../iconfont/have-heart-one.eot?t=1525267376728'); /* IE9*/
-    src: url('../iconfont/have-heart-one.eot?t=1525267376728#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../iconfont/have-heart-one.woff?t=1525267376728') format('woff'),
-    url('../iconfont/have-heart-one.ttf?t=1525267376728') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-    url('../iconfont/have-heart-one.svg?t=1525267376728#have-heart-one') format('svg'); /* iOS 4.1- */
+  font-family: "have-heart-one";
+  src: url("../iconfont/have-heart-one.eot?t=1525267376728");
+  src:
+    url("../iconfont/have-heart-one.eot?t=1525267376728#iefix") format("embedded-opentype"),
+    url("../iconfont/have-heart-one.woff?t=1525267376728") format("woff"),
+    url("../iconfont/have-heart-one.ttf?t=1525267376728") format("truetype"),
+    url("../iconfont/have-heart-one.svg?t=1525267376728#have-heart-one") format("svg");
 }
 
 .font {
-    font-family: "have-heart-one";
+  font-family: "have-heart-one"; /* stylelint-disable-line */
 }

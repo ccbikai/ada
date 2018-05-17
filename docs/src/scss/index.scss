@@ -2,106 +2,106 @@
 $main-color: #3a4250;
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    background: #fff;
-    height: 100%;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
+  background: #fff;
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .wrap {
-    min-height: 100%;
-    padding-bottom: 100px;
+  min-height: 100%;
+  padding-bottom: 100px;
 }
 
 header {
-    width: 100%;
-    height: 320px;
-    background: $main-color;
-    color: #fff;
-    line-height: 1.5;
+  width: 100%;
+  height: 320px;
+  background: $main-color;
+  color: #fff;
+  line-height: 1.5;
 
-    h1 {
-        padding-top: 100px;
-        font-size: 44px;
+  h1 {
+    padding-top: 100px;
+    font-size: 44px;
+  }
+
+  .desc {
+    margin-bottom: 30px;
+    font-size: 32px;
+  }
+
+  .link {
+    font-size: 28px;
+    color: #f0f0f0;
+  }
+
+  img {
+    visibility: hidden;
+
+    &[src] {
+      visibility: visible;
     }
-
-    .desc {
-        margin-bottom: 30px;
-        font-size: 32px;
-    }
-
-    .link {
-        font-size: 28px;
-        color: #f0f0f0;
-    }
-
-    img {
-        visibility: hidden;
-
-        &[src] {
-            visibility: visible;
-        }
-    }
+  }
 }
 
 main {
-    margin-bottom: 30px;
-    font-size: 28px;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: $main-color;
+
+  h2 {
+    margin-top: 30px;
+    line-height: 2;
+    font-size: 32px;
+    color: #545e6f;
+  }
+
+  li {
+    margin-left: 40px;
+  }
+
+  pre {
+    width: 100%;
+    margin-top: 30px;
+    padding: 30px;
+    overflow-x: auto;
+    background: #2f3644;
+    color: #c1c2c3;
+  }
+
+  code {
+    padding: 6px 16px;
+    background-color: #f4f7fd;
+    color: #384454;
+  }
+
+  blockquote {
+    padding: 30px;
+    margin: 20px 0;
+    border-left: 8px solid #7953b5;
+    background: #f8f3ff;
+  }
+
+  a {
     color: $main-color;
-
-    h2 {
-        margin-top: 30px;
-        line-height: 2;
-        font-size: 32px;
-        color: #545e6f;
-    }
-
-    li {
-       margin-left: 40px;
-    }
-
-    pre {
-        width: 100%;
-        margin-top: 30px;
-        padding: 30px;
-        overflow-x: auto;
-        background: #2f3644;
-        color: #C1C2C3;
-    }
-
-    code {
-        padding: 6px 16px;
-        background-color: #f4f7fd;
-        color: #384454;
-    }
-
-    blockquote {
-        padding: 30px;
-        margin: 20px 0;
-        border-left: 8px solid #7953b5;
-        background: #f8f3ff;
-    }
-
-    a {
-        color: $main-color;
-        text-decoration: underline;
-    }
+    text-decoration: underline;
+  }
 }
 
 footer {
-    margin-top: -100px;
-    width: 100%;
-    height: 100px;
-    background: $main-color;
-    text-align: center;
-    font-size: 28px;
-    line-height: 100px;
+  margin-top: -100px;
+  width: 100%;
+  height: 100px;
+  background: $main-color;
+  text-align: center;
+  font-size: 28px;
+  line-height: 100px;
 
-    a {
-        color: #fff;
-    }
+  a {
+    color: #fff;
+  }
 }

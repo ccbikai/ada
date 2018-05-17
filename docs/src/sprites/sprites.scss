@@ -9,40 +9,40 @@
 //
 // At the bottom of this section, we provide information about the spritesheet itself
 // $spritesheet: width height image $spritesheet-sprites;
-$facebook-name: 'facebook';
-$facebook-x: 0px;
-$facebook-y: 0px;
-$facebook-offset-x: 0px;
-$facebook-offset-y: 0px;
+$facebook-name: "facebook";
+$facebook-x: 0;
+$facebook-y: 0;
+$facebook-offset-x: 0;
+$facebook-offset-y: 0;
 $facebook-width: 64px;
 $facebook-height: 64px;
 $facebook-total-width: 224px;
 $facebook-total-height: 144px;
-$facebook-image: '../sprites/sprites.png';
-$facebook: (0px, 0px, 0px, 0px, 64px, 64px, 224px, 144px, '../sprites/sprites.png', 'facebook', );
-$html5-name: 'html5';
+$facebook-image: "../sprites/sprites.png";
+$facebook: (0, 0, 0, 0, 64px, 64px, 224px, 144px, "../sprites/sprites.png", "facebook", );
+$html5-name: "html5";
 $html5-x: 80px;
-$html5-y: 0px;
+$html5-y: 0;
 $html5-offset-x: -80px;
-$html5-offset-y: 0px;
+$html5-offset-y: 0;
 $html5-width: 64px;
 $html5-height: 64px;
 $html5-total-width: 224px;
 $html5-total-height: 144px;
-$html5-image: '../sprites/sprites.png';
-$html5: (80px, 0px, -80px, 0px, 64px, 64px, 224px, 144px, '../sprites/sprites.png', 'html5', );
-$instagram-name: 'instagram';
-$instagram-x: 0px;
+$html5-image: "../sprites/sprites.png";
+$html5: (80px, 0, -80px, 0, 64px, 64px, 224px, 144px, "../sprites/sprites.png", "html5", );
+$instagram-name: "instagram";
+$instagram-x: 0;
 $instagram-y: 80px;
-$instagram-offset-x: 0px;
+$instagram-offset-x: 0;
 $instagram-offset-y: -80px;
 $instagram-width: 64px;
 $instagram-height: 64px;
 $instagram-total-width: 224px;
 $instagram-total-height: 144px;
-$instagram-image: '../sprites/sprites.png';
-$instagram: (0px, 80px, 0px, -80px, 64px, 64px, 224px, 144px, '../sprites/sprites.png', 'instagram', );
-$twitter-name: 'twitter';
+$instagram-image: "../sprites/sprites.png";
+$instagram: (0, 80px, 0, -80px, 64px, 64px, 224px, 144px, "../sprites/sprites.png", "instagram", );
+$twitter-name: "twitter";
 $twitter-x: 80px;
 $twitter-y: 80px;
 $twitter-offset-x: -80px;
@@ -51,24 +51,24 @@ $twitter-width: 64px;
 $twitter-height: 64px;
 $twitter-total-width: 224px;
 $twitter-total-height: 144px;
-$twitter-image: '../sprites/sprites.png';
-$twitter: (80px, 80px, -80px, -80px, 64px, 64px, 224px, 144px, '../sprites/sprites.png', 'twitter', );
-$youtube-name: 'youtube';
+$twitter-image: "../sprites/sprites.png";
+$twitter: (80px, 80px, -80px, -80px, 64px, 64px, 224px, 144px, "../sprites/sprites.png", "twitter", );
+$youtube-name: "youtube";
 $youtube-x: 160px;
-$youtube-y: 0px;
+$youtube-y: 0;
 $youtube-offset-x: -160px;
-$youtube-offset-y: 0px;
+$youtube-offset-y: 0;
 $youtube-width: 64px;
 $youtube-height: 64px;
 $youtube-total-width: 224px;
 $youtube-total-height: 144px;
-$youtube-image: '../sprites/sprites.png';
-$youtube: (160px, 0px, -160px, 0px, 64px, 64px, 224px, 144px, '../sprites/sprites.png', 'youtube', );
+$youtube-image: "../sprites/sprites.png";
+$youtube: (160px, 0, -160px, 0, 64px, 64px, 224px, 144px, "../sprites/sprites.png", "youtube", );
 $spritesheet-width: 224px;
 $spritesheet-height: 144px;
-$spritesheet-image: '../sprites/sprites.png';
+$spritesheet-image: "../sprites/sprites.png";
 $spritesheet-sprites: ($facebook, $html5, $instagram, $twitter, $youtube, );
-$spritesheet: (224px, 144px, '../sprites/sprites.png', $spritesheet-sprites, );
+$spritesheet: (224px, 144px, "../sprites/sprites.png", $spritesheet-sprites, );
 
 // The provided mixins are intended to be used with the array-like variables
 //
@@ -105,11 +105,13 @@ $spritesheet: (224px, 144px, '../sprites/sprites.png', $spritesheet-sprites, );
 @mixin sprite-position($sprite) {
   $sprite-offset-x: nth($sprite, 3);
   $sprite-offset-y: nth($sprite, 4);
+
   background-position: $sprite-offset-x  $sprite-offset-y;
 }
 
 @mixin sprite-image($sprite) {
   $sprite-image: nth($sprite, 9);
+
   background-image: url(#{$sprite-image});
 }
 
@@ -127,6 +129,7 @@ $spritesheet: (224px, 144px, '../sprites/sprites.png', $spritesheet-sprites, );
 @mixin sprites($sprites) {
   @each $sprite in $sprites {
     $sprite-name: nth($sprite, 10);
+
     .#{$sprite-name} {
       @include sprite($sprite);
     }

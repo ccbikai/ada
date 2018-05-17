@@ -7,7 +7,9 @@
     "ada": "bin/ada.js"
   },
   "scripts": {
-    "lint": "eslint --fix --ext .js,.jsx,.vue .",
+    "lint:css": "stylelint -s scss --config .stylelintrc.js --config-basedir \"`npm get prefix`/lib/node_modules\" **/*.{scss,sass,css}",
+    "lint:js": "eslint --fix --ext .js,.jsx,.vue .",
+    "lint": "npm run lint:js; npm run lint:css",
     "build": "node bin/ada.js build --cwd docs --noPx",
     "dev": "node bin/ada.js --cwd docs --noPx",
     "dev:hot": "node bin/ada.js --cwd docs --noPx --hotReact --hotVue",
