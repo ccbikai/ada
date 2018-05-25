@@ -65,4 +65,5 @@ typings/
 
 .map
 .vscode
+.stylelintcache
 dist

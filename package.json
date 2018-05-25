@@ -7,8 +7,8 @@
     "ada": "bin/ada.js"
   },
   "scripts": {
-    "lint:css": "stylelint -s scss --config .stylelintrc.js --config-basedir \"`npm get prefix`/lib/node_modules\" **/*.{scss,sass,css}",
-    "lint:js": "eslint --fix --ext .js,.jsx,.vue .",
+    "lint:css": "stylelint --cache -s scss --config .stylelintrc.js --config-basedir \"`npm get prefix`/lib/node_modules\" \"**/*.{scss,sass,css}\"",
+    "lint:js": "eslint --cache --fix --ext .js,.jsx,.vue .",
     "lint": "npm run lint:js; npm run lint:css",
     "build": "node bin/ada.js build --cwd docs --noPx",
     "dev": "node bin/ada.js --cwd docs --noPx",
