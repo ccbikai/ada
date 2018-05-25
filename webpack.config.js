@@ -145,7 +145,7 @@ const makeConig = (options) => {
             outputPath: 'assets/',
             publicPath: (file) => {
               if (options.build) {
-                return (options.publicPath || `/${options.distDir}/`) + 'assets/' + file
+                return `${options.publicPath || `/${options.distDir}/`}assets/${file}`
               }
 
               return `${options.protocol || 'http:'}//${options.host}:${options.port}/${options.distDir}/assets/${file}`

@@ -1,33 +1,33 @@
 @import "../../sprites/sprites.scss";
 
 .icon {
-    background-size: $spritesheet-width $spritesheet-height;
-    background-repeat: no-repeat;
+  background-size: $spritesheet-width $spritesheet-height;
+  background-repeat: no-repeat;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 40PX;
-    font-family: "PingFang SC", miui, system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
-    -webkit-tap-highlight-color: transparent;
+  font-size: 40PX; /* stylelint-disable-line */
+  font-family: "PingFang SC", miui, system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 img {
-    border: none;
+  border: none;
 }
 
 .main-wrap {
-    width: 100%;
-    max-width: 750px;
-    margin: 0 auto;
-    padding: 0 30px;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 0 30px;
 }

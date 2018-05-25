@@ -13,7 +13,15 @@ const startServer = options => {
   options.debug && console.log('webpackConfig:\n', Object.assign({}, webpackConfig))
 
   if (!options.build) {
+    if (typeof webpackConfig.entry === 'function') {
+      webpackConfig.entry = webpackConfig.entry()
+    }
+
     Object.keys(webpackConfig.entry).forEach(name => {
+      if (/\.(scss|sass|css)$/i.test(name)) {
+        return
+      }
+
       webpackConfig.entry[name] = [`webpack-dev-server/client?http://${options.host}:${options.port}`, webpackConfig.entry[name]]
 
       if (options.hot) {
