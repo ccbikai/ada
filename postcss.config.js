@@ -1,5 +1,5 @@
 const path = require('path')
-const browserlistConfig = require('./browserlist.config')
+const browserlistConfig = require('./utils/browserlist')
 
 module.exports = (ctx) => {
   // const { file, options, env } = ctx

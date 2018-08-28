@@ -8,7 +8,7 @@ const SpritesmithPlugin = require('webpack-spritesmith')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
-const babelConfig = require('./babel.config')
+const babelConfig = require('./utils/babel')
 
 const getEntry = (srcDir, options) => {
   options.debug && console.log('find js files in: ' + path.resolve(srcDir, 'js/*.js'))
