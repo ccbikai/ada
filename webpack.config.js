@@ -166,7 +166,7 @@ const makeConig = (options) => {
 
           return rewPath + '.css'
         },
-        disable: options.hot,
+        disable: options.noExtract || options.hot,
         allChunks: true
       }),
       new SpritesmithPlugin({
