@@ -23,9 +23,8 @@ const router = new VueRouter({
 
 sync(store, router)
 
-module.exports = new Vue({
-  el: '#vue',
+new Vue({
   store,
   router,
   render: h => h(App)
-})
+}).$mount('#vue')
