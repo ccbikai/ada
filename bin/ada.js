@@ -59,6 +59,10 @@ yargs.options('debug', {
   type: 'boolean',
   default: false,
   describe: '自动转换 rem, 并且替换掉 px'
+}).options('noExtract', {
+  type: 'boolean',
+  default: false,
+  describe: '不自动提取 CSS'
 }).options('analyze', {
   type: 'boolean',
   default: false,
