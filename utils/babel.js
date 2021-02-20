@@ -4,7 +4,7 @@ const read = require('./read')
 const browserlistConfig = require('./browserlist')
 
 module.exports = options => {
-  let babelRc = {
+  const babelRc = {
     presets: [
       [require.resolve('@babel/preset-env'), {
         targets: {

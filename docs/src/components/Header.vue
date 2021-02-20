@@ -1,7 +1,10 @@
 <template>
   <h2
     class="hello"
-    @click="changeName({name})">Hello, {{ name }} !</h2>
+    @click="changeName({name})"
+  >
+    Hello, {{ name }} !
+  </h2>
 </template>
 
 <script>

@@ -1,9 +1,7 @@
 {
-    "parserOptions": {
-        "parser": "babel-eslint"
-    },
-    "extends": ["standard", "standard-react", "plugin:vue/strongly-recommended"],
-    "plugins": [
-        "vue"
-    ]
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+  "extends": ["standard", "standard-react", "plugin:react/recommended", "plugin:vue/strongly-recommended"],
+  "plugins": ["vue"]
 }

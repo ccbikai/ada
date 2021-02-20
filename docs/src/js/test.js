@@ -14,6 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 // lazy test
-import('common/lazy.js').then(({LAZY}) => {
+import('common/lazy.js').then(({ LAZY }) => {
   console.log(LAZY)
 })

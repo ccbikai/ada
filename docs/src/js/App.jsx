@@ -17,7 +17,7 @@ const Static = Loadable({
   loading: Loading
 })
 
-function App ({name, actions}) {
+function App ({ name, actions }) {
   return <div className='app'>
     <Header name={name} actions={actions} />
     <ul>
